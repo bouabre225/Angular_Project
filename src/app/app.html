@@ -1,29 +1,43 @@
-<!-- Structure principale de l'application -->
-<div class="app-container">
+<div class="app-container bg-gray-50">
   <!-- Header de l'application -->
-  <header class="app-header">
-    <div class="header-content">
-      <div class="logo">
-        <h1 routerLink="/" class="logo-text">Mes Recettes Gourmandes</h1>
-        <p>Découvrez, planifiez et savourez !</p>
-      </div>
-
-      <nav class="main-nav">
-        <a routerLink="/" routerLinkActive="active" class="nav-link">
-          Mes Recettes
-        </a>
-      </nav>
+  <header class="app-header bg-gray-600 text-white py-8">
+    <div class="container mx-auto text-center">
+      <h1 class="text-3xl font-bold mb-2">
+        <i class="fas fa-utensils mr-2"></i>
+        Mes Recettes Gourmandes
+      </h1>
+      <p class="text-gray-200">Découvrez, planifiez et savourez !</p>
     </div>
   </header>
 
-  <!-- Contenu principal -->
-  <main class="app-main">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm border-b sticky top-0 z-20">
+    <div class="container mx-auto">
+      <div class="flex justify-center space-x-8 py-4" id="nav-buttons">
+        <button data-view="recipes" class="nav-button flex items-center px-4 py-2 text-gray-700 border-b-2 border-blue-500 font-medium">
+          <i class="fas fa-book mr-2"></i>
+          Recettes
+        </button>
+        <button data-view="planning" class="nav-button flex items-center px-4 py-2 text-gray-500 hover:text-gray-700">
+          <i class="fas fa-calendar mr-2"></i>
+          Planning
+        </button>
+        <button data-view="favorites" class="nav-button flex items-center px-4 py-2 text-gray-500 hover:text-gray-700">
+          <i class="fas fa-heart mr-2"></i>
+          Favoris
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- le contenu principal -->
+  <main class="app-main container mx-auto px-4 py-8">
     <router-outlet></router-outlet>
   </main>
 
-  <!-- Footer de l'application -->
-  <footer class="app-footer">
-    <div class="footer-content justify-content-center">
+  <!-- le pieds de page de l'application -->
+  <footer class="app-footer bg-gray-100 border-t py-4">
+    <div class="container mx-auto text-center text-gray-600">
       <p>&copy; 2025 Mes Recettes Gourmandes</p>
     </div>
   </footer>
