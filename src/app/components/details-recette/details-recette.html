@@ -1,0 +1,94 @@
+<div class="recette-detail-container">
+  <!-- Loading state -->
+  <div *ngIf="chargement" class="loading">
+    <p>Chargement...</p>
+  </div>
+
+  <!-- Recipe content -->
+  <div *ngIf="!chargement && recette" class="recette-content">
+    <!-- Header avec navigation -->
+    <div class="recette-header">
+      <button class="back-button" (click)="goBack()">
+        ← Retour aux recettes
+      </button>
+
+      <div class="recette-actions">
+        <button
+          class="edit-button"
+          [routerLink]="['/recette/edit', recette.id]"
+        >
+          ✏️ Modifier
+        </button>
+        <button
+          class="delete-button"
+          (click)="deleteRecette()"
+        >
+          🗑️ Supprimer
+        </button>
+      </div>
+    </div>
+
+    <!-- Image et titre principal -->
+    <div class="recette-hero">
+      <div class="recette-image">
+        <img [src]="recette.image" [alt]="recette.titre" />
+      </div>
+
+      <div class="recette-title-section">
+        <h1 class="recette-title">{{ recette.titre }}</h1>
+
+        <div class="recette-meta">
+          <span class="categorie">{{ recette.categorie }}</span>
+          <span class="duree">⏱️ {{ formatDeLaDuree(recette.duree) }}</span>
+          <span class="difficulte" [class]="getDifficulteeClass(recette.difficulte)">
+            {{ recette.difficulte }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="recette-main">
+      <!-- Section ingrédients -->
+      <div class="ingredients-section">
+        <h2>Ingrédients</h2>
+        <ul class="ingredients-list">
+          <li *ngFor="let ingredient of recette.ingredients" class="ingredient-item">
+            <span class="ingredient-bullet">•</span>
+            {{ ingredient }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Section étapes -->
+      <div class="steps-section">
+        <h2>Étapes de préparation</h2>
+        <ol class="steps-list">
+          <li *ngFor="let step of recette.etapes; let i = index" class="step-item">
+            <div class="step-number">{{ i + 1 }}</div>
+            <div class="step-content">{{ step }}</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Informations supplémentaires -->
+    <div class="recette-footer">
+      <div class="recette-dates">
+        <p><strong>Créée le :</strong> {{ recette.createdAt | date:'dd/MM/yyyy à HH:mm' }}</p>
+        <p *ngIf="recette.updatedAt !== recette.createdAt">
+          <strong>Modifiée le :</strong> {{ recette.updatedAt | date:'dd/MM/yyyy à HH:mm' }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Erreur de chargement -->
+  <div *ngIf="!chargement && !recette" class="error">
+    <h2>Recette introuvable</h2>
+    <p>La recett que vous cherchez n'existe pas ou a été supprimée.</p>
+    <button class="back-button" (click)="goBack()">
+      Retour aux recettes
+    </button>
+  </div>
+</div>
