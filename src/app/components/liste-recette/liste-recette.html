@@ -1,16 +1,17 @@
 <div class="recipe-list-container">
-  <!-- En-tête avec titre et bouton d'ajout -->
-  <div class="header">
-    <h1>Mes Recettes</h1>
-    <a routerLink="/recette/new" class="add-button">
-      <span class="plus-icon">+</span>
-      Ajouter une recette
-    </a>
-  </div>
-
   <!-- Barre de filtres -->
   <app-bar-de-filtre (filtreChange)="FiltreChange($event)"></app-bar-de-filtre>
 
+    <div class="header">
+    <h1>Catalogue de Recettes</h1>
+
+  </div>
+  <div class="header">
+      <a routerLink="/recette/new" class="add-button">
+        <span class="plus-icon">+</span>
+        Ajouter une recette
+      </a>
+  </div>
   <!-- Message si aucune recette -->
   <div *ngIf="filtrerParRecettes.length === 0" class="no-recettes">
     <div class="no-recettes-content">
