@@ -1,0 +1,169 @@
+<div class="communaute-container">
+    <div class="container communaute-content">
+        <!-- Bannière "Bientôt disponible" -->
+        <div class="coming-soon-banner animate__animated animate__fadeInDown">
+            <div class="banner-content">
+                <div class="banner-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="banner-text">
+                    <h2 class="banner-title">Communauté - Bientôt Disponible !</h2>
+                    <p class="banner-description">
+                        Nous travaillons dur pour vous offrir un espace d'échange exceptionnel.
+                        La communauté sera bientôt lancée avec toutes ses fonctionnalités.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- En-tête -->
+        <div class="page-header animate__animated animate__fadeInUp">
+            <h1 class="page-title">Communauté Culinaire</h1>
+            <p class="page-subtitle">Rejoignez notre communauté de passionnés de cuisine</p>
+        </div>
+
+        <!-- Aperçu du forum -->
+        <div class="forum-preview">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-users section-icon"></i>
+                    Aperçu du Forum
+                </h2>
+                <p class="section-description">Découvrez les sections qui seront bientôt disponibles</p>
+            </div>
+
+            <div class="forum-sections-grid">
+                <div
+                    *ngFor="let section of forumSections; let i = index"
+                    class="forum-section-card animate__animated animate__fadeInUp"
+                    [style.animation-delay]="(i * 0.1) + 's'"
+                    (click)="openSection(section)">
+
+                    <div class="section-header-card">
+                        <div class="section-icon-container">
+                            <i [class]="section.icon + ' section-icon-large'"></i>
+                        </div>
+                        <div class="coming-soon-badge" *ngIf="section.comingSoon">
+                            <i class="fas fa-clock"></i>
+                            Bientôt
+                        </div>
+                    </div>
+
+                    <div class="section-content">
+                        <h3 class="section-name">{{ section.titre }}</h3>
+                        <p class="section-description-card">{{ section.description }}</p>
+
+                        <div class="section-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-comments"></i>
+                                <span>{{ section.topics }} sujets</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-reply"></i>
+                                <span>{{ section.posts }} messages</span>
+                            </div>
+                        </div>
+
+                        <div class="section-last-post" *ngIf="section.lastPost">
+                            <div class="last-post-info">
+                                <div class="last-post-title">{{ section.lastPost.titre }}</div>
+                                <div class="last-post-meta">
+                                    par {{ section.lastPost.auteur }} • {{ section.lastPost.date | date:'short' }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-overlay" *ngIf="section.comingSoon">
+                        <div class="overlay-content">
+                            <i class="fas fa-lock overlay-icon"></i>
+                            <span class="overlay-text">Bientôt disponible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fonctionnalités à venir -->
+        <div class="features-preview">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-star section-icon"></i>
+                    Fonctionnalités à Venir
+                </h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card animate__animated animate__fadeInLeft">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="feature-title">Système de Points</h3>
+                    <p class="feature-description">
+                        Gagnez des points en partageant vos recettes et en aidant la communauté.
+                    </p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInUp">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="feature-title">Concours Culinaires</h3>
+                    <p class="feature-description">
+                        Participez à des concours mensuels et remportez des prix exclusifs.
+                    </p>
+                </div>
+
+                <div class="feature-card animate__animated animate__fadeInRight">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="feature-title">Partage Vidéo</h3>
+                    <p class="feature-description">
+                        Partagez vos techniques en vidéo et apprenez des autres membres.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-section">
+            <div class="newsletter-content">
+                <h3 class="newsletter-title">Restez Informé</h3>
+                <p class="newsletter-description">
+                    Inscrivez-vous à notre newsletter pour être averti du lancement de la communauté !
+                </p>
+                <div class="newsletter-form">
+                    <input
+                        type="email"
+                        placeholder="Votre adresse email"
+                        class="newsletter-input"
+                        disabled>
+                    <button class="newsletter-btn" disabled>
+                        <i class="fas fa-bell"></i>
+                        M'avertir
+                    </button>
+                </div>
+                <small class="newsletter-note">
+                    <i class="fas fa-info-circle"></i>
+                    Fonctionnalité bientôt disponible
+                </small>
+            </div>
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="quick-actions">
+            <h3 class="actions-title">En Attendant</h3>
+            <div class="actions-buttons">
+                <button class="action-btn primary" (click)="navigateToRecettes()">
+                    <i class="fas fa-utensils"></i>
+                    Découvrir les Recettes
+                </button>
+                <button class="action-btn secondary" (click)="navigateToApprentissage()">
+                    <i class="fas fa-graduation-cap"></i>
+                    Apprendre les Techniques
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
