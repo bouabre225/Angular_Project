@@ -43,7 +43,7 @@ export const routes: Routes = [
   },
   {
     path: 'suppression',
-    loadComponent: () => import('./body/suppression-rapide/suppression-rapide').then((m) => m.SuppressionRapide),
+    loadComponent: () => import('./body/suppression-rapide/suppression-rapide').then((m) => m.SuppressionRapideComponent),
     title: 'Suppression Rapide',
   },
   {
