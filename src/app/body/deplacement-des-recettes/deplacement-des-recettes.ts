@@ -68,9 +68,10 @@ export class DeplacementDesRecettes implements AfterViewInit {
     }
 
     document.querySelectorAll('.recipe-list').forEach(list => {
-      list.addEventListener('dragover', e => {
+      list.addEventListener('dragover', (e) => {
         e.preventDefault();
-        const afterElement = this.getDragAfterElement(list, e.clientY);
+        const dragEvent = e as DragEvent; // 👈 cast ici
+        const afterElement = this.getDragAfterElement(list, dragEvent.clientY);
         const dragging = document.querySelector('.dragging');
         if (dragging) {
           if (!afterElement) {
