@@ -1,7 +1,73 @@
-<header>
+<header (click)="onDocumentClick($event)">
     <div class="container header-content">
         <span class="logo animate__animated animate__fadeInDown" (click)="navigateToRecettes()">Recettes de cuisine</span>
         <p class="tagline animate__animated animate__fadeIn">Découvrez le plaisir de cuisiner</p>
+
+        <!-- Boutons d'authentification -->
+        <div class="auth-section animate__animated animate__fadeInDown">
+            <!-- Utilisateur non connecté -->
+            <div *ngIf="!isAuthenticated" class="auth-buttons">
+                <button class="auth-btn login-btn" (click)="navigateToLogin()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Connexion
+                </button>
+                <button class="auth-btn register-btn" (click)="navigateToRegister()">
+                    <i class="fas fa-user-plus"></i>
+                    Inscription
+                </button>
+            </div>
+
+            <!-- Utilisateur connecté -->
+            <div *ngIf="isAuthenticated && currentUser" class="user-section">
+                <div class="user-menu-container">
+                    <button class="user-profile-btn" (click)="toggleUserMenu()">
+                        <div class="user-avatar">
+                            <img *ngIf="currentUser.avatar" [src]="currentUser.avatar" [alt]="currentUser.username">
+                            <i *ngIf="!currentUser.avatar" class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+                            <span class="user-username">{{ currentUser.username }}</span>
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-icon" [class.rotated]="showUserMenu"></i>
+                    </button>
+
+                    <!-- Menu déroulant utilisateur -->
+                    <div class="user-dropdown" [class.show]="showUserMenu">
+                        <div class="dropdown-header">
+                            <div class="user-avatar-large">
+                                <img *ngIf="currentUser.avatar" [src]="currentUser.avatar" [alt]="currentUser.username">
+                                <i *ngIf="!currentUser.avatar" class="fas fa-user"></i>
+                            </div>
+                            <div class="dropdown-user-info">
+                                <span class="dropdown-user-name">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+                                <span class="dropdown-user-email">{{ currentUser.email }}</span>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-menu">
+                            <a routerLink="/profile" class="dropdown-item" (click)="closeUserMenu()">
+                                <i class="fas fa-user-circle"></i>
+                                Mon Profil
+                            </a>
+                            <a routerLink="/recette/new" class="dropdown-item" (click)="closeUserMenu()">
+                                <i class="fas fa-plus"></i>
+                                Nouvelle Recette
+                            </a>
+                            <a routerLink="/planning" class="dropdown-item" (click)="closeUserMenu()">
+                                <i class="fas fa-calendar-alt"></i>
+                                Mon Planning
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item logout-item" (click)="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Déconnexion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-4 animate__animated animate__fadeInLeft">

@@ -1,4 +1,6 @@
 import type { Routes } from "@angular/router"
+import { AuthGuard } from "./auth/guards/auth-guard"
+
 
 export const routes: Routes = [
   {
@@ -11,12 +13,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import("./components/recette-formulaire/recette-formulaire").then((m) => m.RecetteFormulaireComponent),
     title: "Nouvelle Recette",
+    canActivate: [AuthGuard],
   },
   {
     path: "recette/edit/:id",
     loadComponent: () =>
       import("./components/recette-formulaire/recette-formulaire").then((m) => m.RecetteFormulaireComponent),
     title: "Modifier Recette",
+    canActivate: [AuthGuard],
   },
   {
     path: "recette/:id",
@@ -33,16 +37,31 @@ export const routes: Routes = [
     loadComponent: () =>
       import("./body/deplacement-des-recettes/deplacement-des-recettes").then((m) => m.DeplacementDesRecettes),
     title: "Déplacement des Recettes",
+    canActivate: [AuthGuard],
   },
   {
     path: "suppression",
     loadComponent: () => import("./body/suppression-rapide/suppression-rapide").then((m) => m.SuppressionRapide),
     title: "Suppression Rapide",
+    canActivate: [AuthGuard],
   },
   {
     path: "planning",
     loadComponent: () => import("./body/vue-de-semaine/vue-de-semaine").then((m) => m.VueDeSemaine),
     title: "Vue de Semaine",
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "connexion",
+    loadComponent: () => import("./connexion.component/connexion.component").then(m => m.ConnexionComponent),
+    title: "Connexion",
+    component: ConnexionComponent
+  },
+  {
+    path: "inscription",
+    loadComponent: () => import("./inscription.component/inscription.component").then(m => m.InscriptionComponent),
+    title: "Inscription",
+    component: InscriptionComponent
   },
   {
     path: "**",

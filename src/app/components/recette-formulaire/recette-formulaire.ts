@@ -185,6 +185,7 @@ export class RecetteFormulaireComponent implements OnInit {
         titre: formValue.titre,
         image: formValue.image,
         duree: formValue.duree,
+        cuisson: formValue.cuisson,
         difficulte: formValue.difficulte,
         categorie: formValue.categorie,
         ingredients: formValue.ingredients.map((ing: any) => ing.value),
