@@ -1,7 +1,6 @@
 <div class="recettes-container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>📘 Recettes</h2>
-        <a [routerLink]="['/ajout-recette']" class="btn btn-success">➕ Ajouter une recette</a>
     </div>
     <div class="carte" *ngFor="let recette of recettes">
     <img [src]="recette.image" [alt]="recette.titre" class="image-recette" />
