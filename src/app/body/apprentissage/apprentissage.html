@@ -1,0 +1,189 @@
+<div class="apprentissage-container">
+    <div class="container apprentissage-content">
+        <!-- En-tête -->
+        <div class="page-header animate__animated animate__fadeInDown">
+            <h1 class="page-title">Apprentissage Culinaire</h1>
+            <p class="page-subtitle">Développez vos compétences culinaires avec nos tutoriels et techniques</p>
+        </div>
+
+        <!-- Filtres -->
+        <div class="filters-section animate__animated animate__fadeInUp">
+            <div class="filter-group">
+                <label class="filter-label">Niveau :</label>
+                <div class="filter-buttons">
+                    <button
+                        *ngFor="let level of levels"
+                        class="filter-btn"
+                        [class.active]="selectedLevel === level"
+                        (click)="selectedLevel = level">
+                        {{ level }}
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Catégorie :</label>
+                <div class="filter-buttons">
+                    <button
+                        *ngFor="let category of categories"
+                        class="filter-btn"
+                        [class.active]="selectedCategory === category"
+                        (click)="selectedCategory = category">
+                        {{ category }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Tutoriels -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-play-circle section-icon"></i>
+                    Tutoriels Vidéo
+                </h2>
+                <p class="section-description">Apprenez étape par étape avec nos tutoriels détaillés</p>
+            </div>
+
+            <div class="tutorials-grid">
+                <div
+                    *ngFor="let tutorial of filteredTutorials; let i = index"
+                    class="tutorial-card animate__animated animate__fadeInUp"
+                    [style.animation-delay]="(i * 0.1) + 's'"
+                    (click)="startTutorial(tutorial)">
+
+                    <div class="tutorial-image">
+                        <img [src]="tutorial.image" [alt]="tutorial.titre">
+                        <div class="tutorial-overlay">
+                            <i class="fas fa-play play-icon"></i>
+                        </div>
+                        <div class="tutorial-badges">
+                            <span class="level-badge" [class]="getLevelClass(tutorial.niveau)">
+                                {{ tutorial.niveau }}
+                            </span>
+                            <span class="duration-badge">
+                                <i class="fas fa-clock"></i>
+                                {{ formatDuration(tutorial.duree) }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-content">
+                        <h3 class="tutorial-title">{{ tutorial.titre }}</h3>
+                        <p class="tutorial-description">{{ tutorial.description }}</p>
+
+                        <div class="tutorial-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-list-ol"></i>
+                                {{ tutorial.etapes }} étapes
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-tag"></i>
+                                {{ tutorial.categorie }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="filteredTutorials.length === 0" class="no-results">
+                <i class="fas fa-search no-results-icon"></i>
+                <h3>Aucun tutoriel trouvé</h3>
+                <p>Essayez de modifier vos filtres pour voir plus de résultats.</p>
+            </div>
+        </div>
+
+        <!-- Section Techniques -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-tools section-icon"></i>
+                    Techniques Culinaires
+                </h2>
+                <p class="section-description">Maîtrisez les techniques essentielles de la cuisine</p>
+            </div>
+
+            <div class="techniques-grid">
+                <div
+                    *ngFor="let technique of filteredTechniques; let i = index"
+                    class="technique-card animate__animated animate__fadeInUp"
+                    [style.animation-delay]="(i * 0.1) + 's'"
+                    (click)="learnTechnique(technique)">
+
+                    <div class="technique-icon-container">
+                        <i [class]="technique.icon + ' technique-icon'"></i>
+                    </div>
+
+                    <div class="technique-content">
+                        <h3 class="technique-name">{{ technique.nom }}</h3>
+                        <p class="technique-description">{{ technique.description }}</p>
+
+                        <div class="technique-meta">
+                            <span class="difficulty-badge" [class]="getDifficulteeClass(technique.difficultee)">
+                                {{ technique.difficultee }}
+                            </span>
+                            <span class="category-badge">
+                                {{ technique.categorie }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="technique-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Conseils -->
+        <div class="tips-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    Conseils du Chef
+                </h2>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card animate__animated animate__fadeInLeft">
+                    <div class="tip-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <h3 class="tip-title">Température</h3>
+                    <p class="tip-text">Utilisez toujours un thermomètre pour vérifier la cuisson des viandes.</p>
+                </div>
+
+                <div class="tip-card animate__animated animate__fadeInUp">
+                    <div class="tip-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="tip-title">Précision</h3>
+                    <p class="tip-text">Pesez vos ingrédients plutôt que de les mesurer en volume pour plus de précision.</p>
+                </div>
+
+                <div class="tip-card animate__animated animate__fadeInRight">
+                    <div class="tip-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="tip-title">Timing</h3>
+                    <p class="tip-text">Préparez tous vos ingrédients avant de commencer la cuisson (mise en place).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="quick-actions">
+            <h3 class="actions-title">Actions Rapides</h3>
+            <div class="actions-buttons">
+                <button class="action-btn primary" (click)="navigateToRecettes()">
+                    <i class="fas fa-utensils"></i>
+                    Mes Recettes
+                </button>
+                <button class="action-btn secondary" (click)="navigateToCommunaute()">
+                    <i class="fas fa-users"></i>
+                    Communauté
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
