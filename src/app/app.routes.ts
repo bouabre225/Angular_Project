@@ -1,6 +1,7 @@
 import type { Routes } from "@angular/router"
 import { AuthGuard } from "./auth/guards/auth-guard"
 
+
 export const routes: Routes = [
   {
     path: "",
@@ -64,6 +65,18 @@ export const routes: Routes = [
     loadComponent: () => import("./body/vue-de-semaine/vue-de-semaine").then((m) => m.VueDeSemaine),
     title: "Vue de Semaine",
     canActivate: [AuthGuard],
+  },
+  {
+    path: "connexion",
+    loadComponent: () => import("./connexion.component/connexion.component").then(m => m.ConnexionComponent),
+    title: "Connexion",
+    component: ConnexionComponent
+  },
+  {
+    path: "inscription",
+    loadComponent: () => import("./inscription.component/inscription.component").then(m => m.InscriptionComponent),
+    title: "Inscription",
+    component: InscriptionComponent
   },
   {
     path: "**",

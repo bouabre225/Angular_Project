@@ -20,6 +20,7 @@ export interface Recette {
   titre: string;
   image: string;
   duree: number; // en minutes
+  cuisson: number; // en minutes
   difficulte: 'Facile' | 'Moyen' | 'Difficile';
   categorie: 'Entrée' | 'Plat' | 'Dessert' | 'Boisson';
   ingredients: string[];
