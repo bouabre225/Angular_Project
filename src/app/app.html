@@ -1,7 +1,7 @@
 <!-- Header Bootstrap -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">{{ title() }}</a>
+    <a class="navbar-brand" [routerLink]="['/']">{{ title() }}</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -9,52 +9,13 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/ajout">Ajouter</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/']">Accueil</a></li>
       </ul>
-
-      <!-- 🔍 Barre de recherche -->
-      <form class="d-flex flex-wrap align-items-center" role="search" (ngSubmit)="$event.preventDefault()">
-        <input
-          class="form-control me-2 mb-2"
-          type="search"
-          placeholder="Par nom"
-          (input)="recetteService.setFiltre({ nom: $any($event.target).value })"
-        />
-
-        <input
-          class="form-control me-2 mb-2"
-          type="search"
-          placeholder="Par ingrédient"
-          (input)="recetteService.setFiltre({ ingredient: $any($event.target).value })"
-        />
-
-        <select class="form-select me-2 mb-2" (change)="recetteService.setFiltre({ categorie: $any($event.target).value })">
-          <option value="">Catégorie</option>
-          <option>Entrée</option>
-          <option>Plat</option>
-          <option>Dessert</option>
-        </select>
-
-        <select class="form-select me-2 mb-2" (change)="recetteService.setFiltre({ difficulte: $any($event.target).value })">
-          <option value="">Difficulté</option>
-          <option>Facile</option>
-          <option>Moyenne</option>
-          <option>Difficile</option>
-        </select>
-
-        <input
-          type="number"
-          class="form-control me-2 mb-2"
-          placeholder="Max temps (min)"
-          (input)="recetteService.setFiltre({ maxTemps: +$any($event.target).value })"
-        />
-      </form>
     </div>
   </div>
 </nav>
 <main class="main mt-4 container">
   <div class="content">
-    <router-outlet />
+    <router-outlet /> 
   </div>
 </main>
