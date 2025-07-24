@@ -1,4 +1,6 @@
 import type { Routes } from "@angular/router"
+import { ConnexionComponent } from "./connexion.component/connexion.component"
+import { InscriptionComponent } from "./inscription.component/inscription.component"
 
 export const routes: Routes = [
   {
@@ -38,6 +40,18 @@ export const routes: Routes = [
     path: "planning",
     loadComponent: () => import("./body/vue-de-semaine/vue-de-semaine").then((m) => m.VueDeSemaine),
     title: "Vue de Semaine",
+  },
+  {
+    path: "connexion",
+    loadComponent: () => import("./connexion.component/connexion.component").then(m => m.ConnexionComponent),
+    title: "Connexion",
+    component: ConnexionComponent
+  },
+  {
+    path: "inscription",
+    loadComponent: () => import("./inscription.component/inscription.component").then(m => m.InscriptionComponent),
+    title: "Inscription",
+    component: InscriptionComponent
   },
   {
     path: "**",
