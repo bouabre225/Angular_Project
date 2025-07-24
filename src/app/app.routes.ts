@@ -1,4 +1,5 @@
 import type { Routes } from "@angular/router"
+import { AuthGuard } from "./auth/guards/auth-guard"
 
 export const routes: Routes = [
   {
@@ -11,12 +12,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import("./components/recette-formulaire/recette-formulaire").then((m) => m.RecetteFormulaireComponent),
     title: "Nouvelle Recette",
+    canActivate: [AuthGuard],
   },
   {
     path: "recette/edit/:id",
     loadComponent: () =>
       import("./components/recette-formulaire/recette-formulaire").then((m) => m.RecetteFormulaireComponent),
     title: "Modifier Recette",
+    canActivate: [AuthGuard],
   },
   {
     path: "recette/:id",
@@ -34,20 +37,33 @@ export const routes: Routes = [
     title: "Communauté",
   },
   {
+    path: "auth/login",
+    loadComponent: () => import("./auth/login/login").then((m) => m.LoginComponent),
+    title: "Connexion",
+  },
+  {
+    path: "auth/register",
+    loadComponent: () => import("./auth/register/register").then((m) => m.RegisterComponent),
+    title: "Inscription",
+  },
+  {
     path: "deplacement",
     loadComponent: () =>
       import("./body/deplacement-des-recettes/deplacement-des-recettes").then((m) => m.DeplacementDesRecettes),
     title: "Déplacement des Recettes",
+    canActivate: [AuthGuard],
   },
   {
     path: "suppression",
     loadComponent: () => import("./body/suppression-rapide/suppression-rapide").then((m) => m.SuppressionRapide),
     title: "Suppression Rapide",
+    canActivate: [AuthGuard],
   },
   {
     path: "planning",
     loadComponent: () => import("./body/vue-de-semaine/vue-de-semaine").then((m) => m.VueDeSemaine),
     title: "Vue de Semaine",
+    canActivate: [AuthGuard],
   },
   {
     path: "**",
