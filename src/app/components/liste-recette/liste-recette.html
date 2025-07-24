@@ -1,74 +1,86 @@
-<div class="recipe-list-container">
-  <!-- Barre de filtres -->
-  <app-bar-de-filtre (filtreChange)="FiltreChange($event)"></app-bar-de-filtre>
-
-    <div class="header">
-    <h1>Catalogue de Recettes</h1>
-
-  </div>
-  <div class="header">
-      <a routerLink="/recette/new" class="add-button">
-        <span class="plus-icon">+</span>
-        Ajouter une recette
-      </a>
-  </div>
-  <!-- Message si aucune recette -->
-  <div *ngIf="filtrerParRecettes.length === 0" class="no-recettes">
-    <div class="no-recettes-content">
-      <h3>Aucune recette trouvée</h3>
-      <p *ngIf="recettes.length === 0">
-        Commencez par ajouter votre première recette !
-      </p>
-      <p *ngIf="recettes.length > 0">
-        Essayez de modifier vos critères de recherche.
-      </p>
-    </div>
-  </div>
-
-  <!-- Grille des recettes -->
-  <div *ngIf="filtrerParRecettes.length > 0" class="recettes-grid">
-    <div
-      *ngFor="let recette of filtrerParRecettes"
-      class="recipe-card"
-      [routerLink]="['/recette', recette.id]"
-    >
-      <!-- Image de la recette -->
-      <div class="recette-image">
-        <img [src]="recette.image" [alt]="recette.titre" />
-        <div class="recipe-actions">
-          <button
-            class="edit-button"
-            [routerLink]="['/recette/edit', recette.id]"
-            title="Modifier"
-          >
-            ✏️
-          </button>
-          <button
-            class="delete-button"
-            (click)="deleteRecette(recette, $event)"
-            title="Supprimer"
-          >
-            🗑️
-          </button>
-        </div>
+<div class="recettes-container">
+  <div class="container recettes-content">
+    <!-- En-tête de page -->
+    <div class="page-header animate__animated animate__fadeInDown">
+      <div class="header-content">
+        <h1 class="page-title">Mes Recettes</h1>
+        <a routerLink="/recette/new" class="add-button">
+          <span class="plus-icon">+</span>
+          Ajouter une recette
+        </a>
       </div>
+    </div>
 
-      <!-- Informations de la recette -->
-      <div class="recette-info">
-        <h3 class="recette-title">{{ recette.titre }}</h3>
+    <!-- Barre de filtres -->
+    <app-bar-de-filtre
+      (filtreChange)="FiltreChange($event)"
+      [resultCount]="filtrerParRecettes.length">
+    </app-bar-de-filtre>
 
-        <div class="recette-meta">
-          <span class="categorie">{{ recette.categorie }}</span>
-          <span class="duree">⏱️ {{ formatDuree(recette.duree) }}</span>
-          <span class="difficulte" [class]="getDifficultesClass(recette.difficulte)">
-            {{ recette.difficulte }}
-          </span>
+    <!-- Message si aucune recette -->
+    <div *ngIf="filtrerParRecettes.length === 0" class="no-recettes animate__animated animate__fadeIn">
+      <div class="no-recettes-content">
+        <i class="fas fa-utensils no-recettes-icon"></i>
+        <h3>Aucune recette trouvée</h3>
+        <p *ngIf="recettes.length === 0">
+          Commencez par ajouter votre première recette !
+        </p>
+        <p *ngIf="recettes.length > 0">
+          Essayez de modifier vos critères de recherche.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grille des recettes -->
+    <div *ngIf="filtrerParRecettes.length > 0" class="recettes-grid">
+      <div
+        *ngFor="let recette of filtrerParRecettes; let i = index"
+        class="recette-card animate__animated animate__fadeInUp"
+        [style.animation-delay]="(i * 0.1) + 's'"
+        (click)="navigateToDetail(recette.id)"
+      >
+        <!-- Image de la recette -->
+        <div class="recette-image">
+          <img [src]="recette.image" [alt]="recette.titre" />
+          <div class="recette-actions">
+            <button
+              class="action-btn edit-button"
+              (click)="navigateToEdit(recette.id, $event)"
+              title="Modifier"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button
+              class="action-btn delete-button"
+              (click)="deleteRecette(recette, $event)"
+              title="Supprimer"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
         </div>
 
-        <div class="recette-ingredients">
-          <span class="ingredients-count">
-            {{ recette.ingredients.length }} ingrédient{{ recette.ingredients.length > 1 ? 's' : '' }}
-          </span>
+        <!-- Informations de la recette -->
+        <div class="recette-info">
+          <h3 class="recette-title">{{ recette.titre }}</h3>
+
+          <div class="recette-meta">
+            <span class="categorie">{{ recette.categorie }}</span>
+            <div class="meta-item duree">
+              <i class="fas fa-clock duree-icon"></i>
+              {{ formatDuree(recette.duree) }}
+            </div>
+            <span class="difficulte" [class]="getDifficultesClass(recette.difficulte)">
+              {{ recette.difficulte }}
+            </span>
+          </div>
+
+          <div class="recette-ingredients">
+            <div class="ingredients-count">
+              <i class="fas fa-list ingredients-icon"></i>
+              {{ recette.ingredients.length }} ingrédient{{ recette.ingredients.length > 1 ? 's' : '' }}
+            </div>
+          </div>
         </div>
       </div>
     </div>

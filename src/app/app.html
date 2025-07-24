@@ -1,15 +1,9 @@
-<app-header></app-header>
+<div class="app-container">
+  <app-header></app-header>
 
-<main class="main">
-  <div class="content">
-    <app-deplacement-des-recettes></app-deplacement-des-recettes>
-    <app-vue-de-semaine></app-vue-de-semaine>
-    <app-suppression-rapide></app-suppression-rapide>
-    <app-detail-recette></app-detail-recette>
-    <app-liste-recette></app-liste-recette>
-  </div>
-  <router-outlet></router-outlet>
-</main>
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
 
-<app-footer></app-footer>
-
+  <app-footer></app-footer>
+</div>

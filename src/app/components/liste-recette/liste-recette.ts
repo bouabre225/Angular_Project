@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
-import { Recette, FiltreRecette } from '../../recettes/recettes-module';
-import { RecetteService } from '../../services/recettes';
-import { BarDeFiltreComponent } from '../bar-de-filtre/bar-de-filtre';
+import { Component, type OnInit, type OnDestroy } from "@angular/core"
+import { CommonModule } from "@angular/common"
+import { RouterModule, Router } from "@angular/router"
+import { Subject, takeUntil } from "rxjs"
+import type { Recette, FiltreRecette } from "../../recettes/recettes-module"
+import { RecetteService } from "../../services/recettes"
+import { BarDeFiltreComponent } from "../bar-de-filtre/bar-de-filtre"
 
 /**
  * Composant principal d'affichage de la liste des recettes
@@ -12,54 +12,59 @@ import { BarDeFiltreComponent } from '../bar-de-filtre/bar-de-filtre';
  * Point d'entrée principal de l'application
  */
 @Component({
-  selector: 'app-liste-recette',
+  selector: "app-liste-recette",
   standalone: true,
   imports: [CommonModule, RouterModule, BarDeFiltreComponent],
-  templateUrl: './liste-recette.html',
-  styleUrls: ['./liste-recette.css']
+  templateUrl: "./liste-recette.html",
+  styleUrls: ["./liste-recette.css"],
 })
 export class ListeRecetteComponent implements OnInit, OnDestroy {
-  recettes: Recette[] = [];
-  filtrerParRecettes: Recette[] = [];
-  private destroy$ = new Subject<void>();
+  recettes: Recette[] = []
+  filtrerParRecettes: Recette[] = []
+  private destroy$ = new Subject<void>()
 
-  constructor(private recetteService: RecetteService) {}
+  constructor(
+    private recetteService: RecetteService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     // S'abonner aux changements de recettes
-    this.recetteService.chargerToutesLesRecettes()
+    this.recetteService
+      .chargerToutesLesRecettes()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(recettes => {
-        this.recettes = recettes;
-        this.filtrerParRecettes = recettes;
-      });
+      .subscribe((recettes) => {
+        this.recettes = recettes
+        this.filtrerParRecettes = recettes
+      })
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.destroy$.next()
+    this.destroy$.complete()
   }
 
   /**
    * Gère les changements de filtres depuis la barre de filtres
    */
   FiltreChange(filtre: FiltreRecette): void {
-    this.recetteService.filtrerRecettes(filtre)
+    this.recetteService
+      .filtrerRecettes(filtre)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(recettes => {
-        this.filtrerParRecettes = recettes;
-      });
+      .subscribe((recettes) => {
+        this.filtrerParRecettes = recettes
+      })
   }
 
   /**
    * Supprime une recette avec confirmation
    */
   deleteRecette(recette: Recette, event: Event): void {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
 
     if (confirm(`Êtes-vous sûr de vouloir supprimer la recette "${recette.titre}" ?`)) {
-      this.recetteService.deleteRecette(recette.id);
+      this.recetteService.deleteRecette(recette.id)
     }
   }
 
@@ -68,11 +73,11 @@ export class ListeRecetteComponent implements OnInit, OnDestroy {
    */
   formatDuree(minutes: number): string {
     if (minutes < 60) {
-      return `${minutes} min`;
+      return `${minutes} min`
     }
-    const heures = Math.floor(minutes / 60);
-    const minutesRestants = minutes % 60;
-    return minutesRestants > 0 ? `${heures}h ${minutesRestants}min` : `${heures}h`;
+    const heures = Math.floor(minutes / 60)
+    const minutesRestants = minutes % 60
+    return minutesRestants > 0 ? `${heures}h ${minutesRestants}min` : `${heures}h`
   }
 
   /**
@@ -80,10 +85,30 @@ export class ListeRecetteComponent implements OnInit, OnDestroy {
    */
   getDifficultesClass(difficulte: string): string {
     switch (difficulte) {
-      case 'Facile': return 'difficulty-easy';
-      case 'Moyen': return 'difficulty-medium';
-      case 'Difficile': return 'difficulty-hard';
-      default: return '';
+      case "Facile":
+        return "difficulty-easy"
+      case "Moyen":
+        return "difficulty-medium"
+      case "Difficile":
+        return "difficulty-hard"
+      default:
+        return ""
     }
+  }
+
+  /**
+   * Navigation vers le détail d'une recette
+   */
+  navigateToDetail(id: string): void {
+    this.router.navigate(["/recette", id])
+  }
+
+  /**
+   * Navigation vers l'édition d'une recette
+   */
+  navigateToEdit(id: string, event: Event): void {
+    event.preventDefault()
+    event.stopPropagation()
+    this.router.navigate(["/recette/edit", id])
   }
 }
