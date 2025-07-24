@@ -23,6 +23,8 @@
         cuisson: 15,
         difficulte: 'Facile',
         categorie: 'Plat',
+        jour: 'Mardi',
+        type: 'Petit-déjeuner',
         ingredients: ['Pâte à pizza', 'Tomate', 'Mozzarella', 'Basilic'],
         preparation: [
           'Préchauffer le four à 220°C',
@@ -40,6 +42,8 @@
         cuisson: 0,
         difficulte: 'Facile',
         categorie: 'Entrée',
+        jour: 'Samedi',
+        type: 'Dîner',
         ingredients: ['Laitue', 'Poulet grillé', 'Parmesan', 'Croûtons', 'Sauce César'],
         preparation: [
           'Laver la laitue',
@@ -56,8 +60,10 @@
         image: 'assets/images/poulet-roti.jpg',
         duree: 15,
         cuisson: 60,
-        difficulte: 'Moyen',
+        difficulte: 'Moyenne',
         categorie: 'Plat',
+        jour: 'Dimanche',
+        type: 'Petit-déjeuner',
         ingredients: ['Poulet entier', 'Herbes de Provence', 'Ail', 'Citron', 'Beurre'],
         preparation: [
           'Préchauffer le four à 180°C',
@@ -73,8 +79,10 @@
         image: 'assets/images/ratatouille.jpg',
         duree: 30,
         cuisson: 45,
-        difficulte: 'Moyen',
+        difficulte: 'Moyenne',
         categorie: 'Plat',
+        jour: 'Mercredi',
+        type: 'Déjeuner',
         ingredients: ['Aubergine', 'Courgette', 'Poivron', 'Tomate', 'Oignon', 'Ail'],
         preparation: [
           'Couper tous les légumes en dés',
@@ -92,6 +100,8 @@
         cuisson: 35,
         difficulte: 'Facile',
         categorie: 'Dessert',
+        jour: 'Jeudi',
+        type: 'Dessert',
         ingredients: ['Pâte brisée', 'Pommes', 'Sucre', 'Beurre', 'Cannelle'],
         preparation: [
           'Étaler la pâte dans un moule',
@@ -109,7 +119,9 @@
         duree: 10,
         cuisson: 10,
         difficulte: 'Facile',
-        categorie: 'Petit-déjeuner',
+        categorie: 'Entrée',
+        jour: 'Lundi',
+        type: 'Petit-déjeuner',
         ingredients: ['Œufs', 'Champignons', 'Persil', 'Beurre', 'Sel', 'Poivre'],
         preparation: [
           'Battre les œufs en omelette',
