@@ -48,6 +48,7 @@ export const routes: Routes = [
     title: "Inscription",
   },
   {
+
     path: "deplacement",
     loadComponent: () =>
       import("./body/deplacement-des-recettes/deplacement-des-recettes").then((m) => m.DeplacementDesRecettes),
