@@ -29,11 +29,6 @@ export const routes: Routes = [
     title: "Apprentissage Culinaire",
   },
   {
-    path: "communaute",
-    loadComponent: () => import("./body/communaute/communaute").then((m) => m.CommunauteComponent),
-    title: "Communauté",
-  },
-  {
     path: "deplacement",
     loadComponent: () =>
       import("./body/deplacement-des-recettes/deplacement-des-recettes").then((m) => m.DeplacementDesRecettes),
