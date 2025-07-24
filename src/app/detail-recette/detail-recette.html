@@ -1,16 +1,16 @@
 <div class="container mt-4" *ngIf="recette">
-    <div class="row">
-        <h1>{{ recette.titre }}</h1>
-    </div>
+
     <div class="row">
     <div class="col-md-6">
-        <img [src]="recette.image" class="img-fluid rounded" />
+        <img [src]="recette.image" class="img-fluid rounded recipe-detail-image" />
     </div>
     <div class="col-md-6">
         <h2>{{ recette.titre }}</h2>
         <p><strong>Durée :</strong> {{ recette.duree }} min</p>
         <p><strong>Cuisson :</strong> {{ recette.cuisson }} min</p>
         <p><strong>Difficulté :</strong> {{ recette.difficulte }}</p>
+        <p><strong>Jour :</strong> {{ recette.jour }}</p>
+        <p><strong>Type :</strong> {{ recette.type }}</p>
         <p *ngIf="recette.nutrition"><strong>Valeurs nutritionnelles :</strong> {{ recette.nutrition }}</p>
     </div>
     </div>
