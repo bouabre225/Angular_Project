@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core"
 import { BehaviorSubject, type Observable } from "rxjs"
 import type { Recette, FiltreRecette } from "../recettes/recettes-module"
+import { RecetteApiService } from './recette-api.service';
 
 /**
  * Service principal pour la gestion des recettes
@@ -15,8 +16,45 @@ export class RecetteService {
   private recetteSubject = new BehaviorSubject<Recette[]>([])
   public recettes$ = this.recetteSubject.asObservable()
 
-  constructor() {
-    this.chargerRecettes()
+  private readonly userId = 'utilisateur-demo'; // À remplacer par l'ID utilisateur réel
+
+  constructor(private recetteApi: RecetteApiService) {
+    this.chargerRecettes();
+  }
+  /**
+   * Synchronisation API : charger les recettes depuis l'API
+   */
+  public chargerRecettesApi(userId: string = this.userId) {
+    this.recetteApi.getRecettes(userId).subscribe({
+      next: (data) => {
+        if (Array.isArray(data)) {
+          this.recetteSubject.next(data);
+          this.sauvegarderRecettesLocal(data);
+        } else {
+          this.chargerRecettes();
+        }
+      },
+      error: () => {
+        this.chargerRecettes();
+      }
+    });
+  }
+
+  /**
+   * Synchronisation API : sauvegarder les recettes sur l'API
+   */
+  public sauvegarderRecettesApi(userId: string = this.userId) {
+    const recettes = this.recetteSubject.value;
+    this.recetteApi.saveRecettes(userId, recettes).subscribe();
+    this.sauvegarderRecettesLocal(recettes);
+  }
+
+  /**
+   * Sauvegarde locale (fallback ou usage hors-ligne)
+   */
+  private sauvegarderRecettesLocal(recipes: Recette[]): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(recipes));
+    this.recetteSubject.next(recipes);
   }
 
   /**
@@ -40,9 +78,9 @@ export class RecetteService {
   /**
    * Sauvegarde les recettes dans localStorage
    */
+  // L'ancienne méthode sauvegarderRecettes devient une redirection vers la sauvegarde API
   private sauvegarderRecettes(recipes: Recette[]): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(recipes))
-    this.recetteSubject.next(recipes)
+    this.sauvegarderRecettesApi();
   }
 
   /**
@@ -132,7 +170,8 @@ export class RecetteService {
       updatedAt: new Date(),
     }
     const recettes = [...this.recetteSubject.value, newRecette]
-    this.sauvegarderRecettes(recettes)
+    this.sauvegarderRecettesApi();
+    this.recetteSubject.next(recettes);
   }
 
   /**
@@ -141,16 +180,18 @@ export class RecetteService {
   updateRecette(id: string, updatedRecette: Partial<Recette>): void {
     const recettes = this.recetteSubject.value.map((recette) =>
       recette.id === id ? { ...recette, ...updatedRecette, updatedAt: new Date() } : recette,
-    )
-    this.sauvegarderRecettes(recettes)
+    );
+    this.sauvegarderRecettesApi();
+    this.recetteSubject.next(recettes);
   }
 
   /**
    * Supprime une recette
    */
   deleteRecette(id: string): void {
-    const recettes = this.recetteSubject.value.filter((recette) => recette.id !== id)
-    this.sauvegarderRecettes(recettes)
+    const recettes = this.recetteSubject.value.filter((recette) => recette.id !== id);
+    this.sauvegarderRecettesApi();
+    this.recetteSubject.next(recettes);
   }
 
   /**
