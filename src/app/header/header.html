@@ -1,0 +1,30 @@
+<header>
+    <div class="container header-content">
+        <span class="logo animate__animated animate__fadeInDown" (click)="navigateToRecettes()">Recettes de cuisine</span>
+        <p class="tagline animate__animated animate__fadeIn">Découvrez le plaisir de cuisiner</p>
+
+        <div class="row">
+            <div class="col-md-4 animate__animated animate__fadeInLeft">
+                <div class="header-box text-center" (click)="navigateToRecettes()">
+                    <i class="fas fa-utensils header-icon"></i>
+                    <h3 class="header-title">Mes Recettes</h3>
+                    <p class="header-text">Explorez et gérez votre collection de recettes personnelles avec des outils de recherche avancés.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate__animated animate__fadeInUp">
+                <div class="header-box text-center" (click)="navigateToApprentissage()">
+                    <i class="fas fa-calendar-alt header-icon"></i>
+                    <h3 class="header-title">Apprentissage</h3>
+                    <p class="header-text">Des recettes détaillées avec instructions claires, accessibles à tous les niveaux de compétence culinaire.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate__animated animate__fadeInRight">
+                <div class="header-box text-center" (click)="navigateToCommunaute()">
+                    <i class="fas fa-cogs header-icon"></i>
+                    <h3 class="header-title">Communauté</h3>
+                    <p class="header-text">Partagez vos créations, échangez des astuces et recevez des conseils de passionnés.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,118 @@
+<div class="filter-container">
+  <div class="container filter-content">
+    <h2 class="filter-title animate__animated animate__fadeInDown">Filtres de Recherche</h2>
+    <p class="filter-subtitle animate__animated animate__fadeIn">Trouvez la recette parfaite selon vos critères</p>
+
+    <div class="filter-bar animate__animated animate__fadeInUp">
+      <div class="filter-grid">
+        <!-- Recherche par nom -->
+        <div class="filter-group">
+          <label class="filter-label" for="search">
+            <i class="fas fa-search filter-icon"></i>
+            Rechercher une recette
+          </label>
+          <input
+            id="search"
+            type="text"
+            [(ngModel)]="chercheTerm"
+            (input)="FiltreChange()"
+            placeholder="Nom de la recette..."
+            class="filter-input"
+          />
+        </div>
+
+        <!-- Recherche par ingrédients -->
+        <div class="filter-group">
+          <label class="filter-label" for="ingredient">
+            <i class="fas fa-carrot filter-icon"></i>
+            Ingrédient
+          </label>
+          <input
+            id="ingredient"
+            type="text"
+            [(ngModel)]="ingredient"
+            (input)="FiltreChange()"
+            placeholder="Ex: tomate, fromage..."
+            class="filter-input"
+          />
+        </div>
+
+        <!-- Filtre par catégories -->
+        <div class="filter-group">
+          <label class="filter-label" for="categorie">
+            <i class="fas fa-tags filter-icon"></i>
+            Catégorie
+          </label>
+          <select
+            id="categorie"
+            [(ngModel)]="categories"
+            (change)="FiltreChange()"
+            class="filter-select"
+          >
+            <option value="">Toutes les catégories</option>
+            <option *ngFor="let cat of categorie.slice(1)" [value]="cat">
+              {{ cat }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Filtre durée -->
+        <div class="filter-group">
+          <label class="filter-label" for="duree">
+            <i class="fas fa-clock filter-icon"></i>
+            Temps de préparation
+          </label>
+          <select
+            id="duree"
+            [(ngModel)]="DureeMax"
+            (change)="FiltreChange()"
+            class="filter-select"
+          >
+            <option *ngFor="let duration of durees" [ngValue]="duration.value">
+              {{ duration.label }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Filtre pour la difficulté -->
+        <div class="filter-group">
+          <label class="filter-label" for="difficulte">
+            <i class="fas fa-chart-line filter-icon"></i>
+            Difficulté
+          </label>
+          <select
+            id="difficulte"
+            [(ngModel)]="difficultees"
+            (change)="FiltreChange()"
+            class="filter-select"
+          >
+            <option value="">Toutes les difficultés</option>
+            <option *ngFor="let diff of difficultes.slice(1)" [value]="diff">
+              {{ diff }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Bouton pour remettre à zéro -->
+        <div class="filter-group">
+          <button
+            type="button"
+            (click)="reinitialiserFiltres()"
+            class="clear-button"
+          >
+            <i class="fas fa-eraser me-2"></i>
+            Effacer les filtres
+          </button>
+        </div>
+      </div>
+
+      <!-- Statistiques des résultats -->
+      <div class="filter-stats animate__animated animate__fadeIn">
+        <p class="stats-text">
+          <span class="stats-number">{{ resultCount }}</span>
+          recette{{ resultCount > 1 ? 's' : '' }} trouvée{{ resultCount > 1 ? 's' : '' }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
