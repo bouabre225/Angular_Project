@@ -50,32 +50,6 @@ export class RecetteService {
     }
   ]);
 
-  // 🔍 Filtres actifs (réactif)
-  filter = signal<FiltreRecette>({
-    nom: '',
-    ingredient: '',
-    categorie: '',
-    difficulte: '',
-    maxTemps: 0
-  });
-
-  // ✅ Méthode pour obtenir la liste filtrée
-  getRecettesFiltrees(): Recette[] {
-    const f = this.filter();
-    return this.recettes().filter(r =>
-      (!f.nom || r.titre.toLowerCase().includes(f.nom.toLowerCase())) &&
-      (!f.ingredient || r.ingredients.some(i => i.toLowerCase().includes(f.ingredient.toLowerCase()))) &&
-      (!f.categorie || r.categorie === f.categorie) &&
-      (!f.difficulte || r.difficulte === f.difficulte) &&
-      (!f.maxTemps || r.duree <= f.maxTemps)
-    );
-  }
-
-  // ✅ Modifier un ou plusieurs filtres
-  setFiltre(partial: Partial<FiltreRecette>) {
-    this.filter.update(old => ({ ...old, ...partial }));
-  }
-
   // ✅ Obtenir toutes les recettes (non filtrées)
   getRecettes(): Recette[] {
     return this.recettes();
