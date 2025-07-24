@@ -31,8 +31,14 @@ export const routes: Routes = [
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
+  },
+  { path: '', 
+    component: ListeRecette 
+  },
+    { path: 'recette/:id', 
+    component: DetailRecette 
+  },
+    { path: '**', 
+    redirectTo: '' 
   }
-    { path: '', component: ListeRecette },
-    { path: 'recette/:id', component: DetailRecette },
-    { path: '**', redirectTo: '' }
 ];
