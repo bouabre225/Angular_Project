@@ -1,34 +1,60 @@
+/**
+ * @description Conteneur principal pour les cartes de recettes.
+ * Utilise Flexbox pour un agencement responsive et centré.
+ */
 .recettes-container {
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
-justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Espace entre les cartes */
+  justify-content: center;
+  padding: 1rem; /* Ajoute un peu d'air autour du conteneur */
 }
 
+/**
+ * @description Style de base pour chaque carte de recette.
+ * Définit la taille, l'ombre, les bordures et une transition pour l'effet de survol.
+ */
 .carte {
-width: 250px;
-border-radius: 12px;
-box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-overflow: hidden;
-transition: transform 0.2s;
-background-color: white;
+  width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  overflow: hidden; /* Assure que l'image ne dépasse pas les coins arrondis */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
 }
 
+/**
+ * @description Effet de survol pour la carte.
+ * Agrandit légèrement la carte et renforce l'ombre pour un effet interactif.
+ */
 .carte:hover {
-transform: scale(1.02);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
+/**
+ * @description Style pour l'image de la recette dans la carte.
+ * Assure que l'image remplit l'espace alloué sans se déformer.
+ */
 .image-recette {
-width: 100%;
-height: 150px;
-object-fit: cover;
+  width: 100%;
+  height: 150px;
+  object-fit: cover; /* Recadre l'image pour remplir l'espace */
 }
 
+/**
+ * @description Conteneur pour le contenu textuel de la carte.
+ */
 .contenu {
-padding: 1rem;
+  padding: 1rem;
 }
 
+/**
+ * @description Style pour le titre de la recette dans la carte.
+ */
 h3 {
-margin: 0;
-font-size: 1.2rem;
+  margin: 0 0 0.5rem 0; /* Ajoute un peu d'espace sous le titre */
+  font-size: 1.2rem;
+  font-weight: 600; /* Rend le titre un peu plus gras */
 }
+

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Recette } from '../../models/recette';
+import { Recette } from '../../models/recette.model';
 import { RecetteService } from '../../recette';
 
 @Component({

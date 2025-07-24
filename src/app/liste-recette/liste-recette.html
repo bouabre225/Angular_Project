@@ -1,14 +1,32 @@
+<!-- 
+  Conteneur principal pour la liste des recettes.
+  Utilise Flexbox pour afficher les cartes de manière responsive.
+-->
 <div class="recettes-container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>📘 Recettes</h2>
-    </div>
-    <div class="carte" *ngFor="let recette of recettes">
+  
+  <!-- En-tête de la section des recettes -->
+  <div class="d-flex justify-content-between align-items-center mb-3 w-100">
+    <h2>📘 Recettes</h2>
+  </div>
+
+  <!-- 
+    Boucle sur chaque recette pour générer une carte interactive.
+    *ngFor est une directive structurelle d'Angular pour la répétition d'éléments.
+  -->
+  <div class="carte" *ngFor="let recette of recettes">
+    
+    <!-- Affiche l'image de la recette -->
     <img [src]="recette.image" [alt]="recette.titre" class="image-recette" />
+    
+    <!-- Contenu textuel de la carte -->
     <div class="contenu">
-        <h3 class="card-title">{{ recette.titre }}</h3>
-        <p class="card-text">⏱ {{ recette.duree }} min</p>
-        <p class="card-text">🔥 Difficulté : {{ recette.difficulte }}</p>
-        <a [routerLink]="['/recette', recette.id]" class="btn btn-primary">Voir détail</a>
+      <h3 class="card-title">{{ recette.titre }}</h3>
+      <p class="card-text">⏱ {{ recette.duree }} min</p>
+      <p class="card-text">🔥 Difficulté : {{ recette.difficulte }}</p>
+      
+      <!-- Lien vers la page de détail de la recette -->
+      <a [routerLink]="['/recette', recette.id]" class="btn btn-primary">Voir détail</a>
     </div>
-    </div>
+  </div>
+
 </div>

@@ -1,3 +1,8 @@
+/**
+ * @description Style pour l'image de la recette dans la page de détail.
+ * Limite la largeur à 50% du conteneur et la centre horizontalement.
+ * Ceci est modifiable pour ajuster la taille de l'image selon les besoins.
+ */
 .recipe-detail-image {
   width: 50%;
   display: block;

@@ -1,6 +1,8 @@
 import { AfterViewInit, Component } from '@angular/core';
 
 @Component({
+  standalone: true,
+  imports: [],
   selector: 'app-deplacement-des-recettes',
   templateUrl: './deplacement-des-recettes.html',
   styleUrls: ['./deplacement-des-recettes.css']
