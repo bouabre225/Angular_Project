@@ -63,7 +63,7 @@
 
 .add-button {
   background: linear-gradient(135deg, var(--success-color), #27ae60);
-  color: white;
+  color: rgb(94, 83, 83);
   text-decoration: none;
   padding: 1rem 2rem;
   border-radius: 25px;
@@ -82,7 +82,7 @@
   box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
   background: linear-gradient(135deg, #27ae60, var(--success-color));
   text-decoration: none;
-  color: white;
+  color: rgb(224, 73, 73);
 }
 
 .plus-icon {

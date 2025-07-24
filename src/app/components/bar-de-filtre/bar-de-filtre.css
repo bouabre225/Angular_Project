@@ -114,7 +114,6 @@
 
 .clear-button {
   background: linear-gradient(135deg, var(--accent-color), #f39c12);
-  color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
