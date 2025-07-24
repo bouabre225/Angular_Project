@@ -18,8 +18,8 @@
       {
         id: 1,
         titre: 'Pizza Margherita',
-        image: 'assets/images/pizza.jpg',
-        duree: 20,
+        image: 'assets/pizza.png',
+        duree: 20,  
         cuisson: 15,
         difficulte: 'Facile',
         categorie: 'Plat',
@@ -37,7 +37,7 @@
       {
         id: 2,
         titre: 'Salade César',
-        image: 'assets/images/cesar.jpg',
+        image: 'assets/salade.png',
         duree: 15,
         cuisson: 0,
         difficulte: 'Facile',
@@ -56,7 +56,7 @@
       {
         id: 3,
         titre: 'Poulet rôti aux herbes',
-        image: 'assets/images/poulet-roti.jpg',
+        image: 'assets/Poulet.png',
         duree: 15,
         cuisson: 60,
         difficulte: 'Moyenne',
@@ -75,7 +75,7 @@
       {
         id: 4,
         titre: 'Ratatouille',
-        image: 'assets/images/ratatouille.jpg',
+        image: 'assets/Ratatouille.png',
         duree: 30,
         cuisson: 45,
         difficulte: 'Moyenne',
@@ -94,7 +94,7 @@
       {
         id: 5,
         titre: 'Tarte aux pommes',
-        image: 'assets/images/tarte-pommes.jpg',
+        image: 'assets/Tartes.png',
         duree: 25,
         cuisson: 35,
         difficulte: 'Facile',
@@ -114,7 +114,7 @@
       {
         id: 6,
         titre: 'Omelette aux champignons',
-        image: 'assets/images/omelette.jpg',
+        image: 'assets/omolette.png',
         duree: 10,
         cuisson: 10,
         difficulte: 'Facile',

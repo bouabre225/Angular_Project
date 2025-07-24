@@ -1,5 +1,6 @@
 <div class="container mt-4" *ngIf="recette">
     <div class="row">
+        <img [src]="recette.image" alt="{{ recette.titre }}" class="img-fluid rounded mb-3">
         <h1>{{ recette.titre }}</h1>
     </div>
     <div class="row">
