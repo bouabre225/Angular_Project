@@ -1,17 +1,11 @@
-<!-- Header Bootstrap -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/']">{{ title() }}</a>
+<app-header></app-header>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/']">Accueil</a></li>
-      </ul>
-    </div>
+<main class="main">
+  <div class="content">
+    <app-deplacement-des-recettes></app-deplacement-des-recettes>
+    <app-vue-de-semaine></app-vue-de-semaine>
+    <app-suppression-rapide></app-suppression-rapide>
   </div>
 </nav>
 <main class="main mt-4 container">
@@ -19,3 +13,7 @@
     <router-outlet /> 
   </div>
 </main>
+
+<app-footer></app-footer>
+
+
