@@ -1,45 +1,38 @@
+// Import des modules Angular de base
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// Importation des composants globaux de la page
+// Importation des composants globaux et structurels
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
-import { VueDeSemaine } from './body/vue-de-semaine/vue-de-semaine';
-import { DeplacementDesRecettes } from './body/deplacement-des-recettes/deplacement-des-recettes';
+import { ConnexionComponent } from './connexion.component/connexion.component';
+import { InscriptionComponent } from './inscription.component/inscription.component';
 
 /**
  * @description Composant racine de l'application.
- * C'est le point d'entrée principal qui orchestre l'affichage des autres composants.
+ * C'est le point d'entrée principal qui orchestre l'affichage des autres composants via le routing.
  */
 @Component({
   selector: 'app-root',
-  standalone: true, // Déclare le composant comme autonome (standalone).
+  standalone: true,
   imports: [
-    // Modules et composants nécessaires pour le template de ce composant.
+    // Modules Angular essentiels
     CommonModule,
-    RouterOutlet, // Affiche le composant correspondant à la route active.
     RouterModule,
+    RouterOutlet,
+    FormsModule,
+
+    // Composants structurels de la page
     Header,
     Footer,
-    VueDeSemaine,
-    DeplacementDesRecettes,
-    FormsModule,
-    // Les composants structurels de la page sont déjà importés ci-dessus.
+    ConnexionComponent,
+    InscriptionComponent,
   ],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrls: ['./app.css'],
 })
 export class AppComponent {
-  // Le titre n'est pas utilisé actuellement, mais conservé pour référence.
-  public title = 'Recette_Project';
-
-  /**
-   * @description Le constructeur est vide car aucune initialisation complexe n'est requise ici.
-   * Le RecetteService est injecté au niveau root et n'a pas besoin d'être déclaré ici.
-   */
-  constructor() {}
+  title = 'Recette_Project';
 }
-
-

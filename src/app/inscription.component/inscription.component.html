@@ -1,0 +1,104 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="container mt-5">
+  <div class="floating-ingredient">🍎</div>
+  <div class="floating-ingredient">🥕</div>
+  <div class="floating-ingredient">🥬</div>
+  <div class="floating-ingredient">🍋</div>
+  <h2 class="mb-4">Inscription</h2>
+  <form (ngSubmit)="onSubmit()" #formRef="ngForm">
+    <!-- Nom -->
+    <div class="mb-3">
+      <label class="form-label">Nom complet</label>
+      <input type="text" class="form-control" name="nom" [(ngModel)]="utilisateur.nom" required>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]="utilisateur.email" required>
+    </div>
+
+    <!-- Mot de passe -->
+    <div class="mb-3">
+      <label class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" name="mot_de_passe" [(ngModel)]="utilisateur.mot_de_passe" required>
+    </div>
+
+    <!-- Date de naissance -->
+    <div class="mb-3">
+      <label class="form-label">Date de naissance</label>
+      <input type="date" class="form-control" name="date_naissance" [(ngModel)]="utilisateur.date_naissance">
+    </div>
+
+    <!-- Sexe -->
+    <div class="mb-3">
+      <label class="form-label">Sexe</label>
+      <select class="form-select" name="sexe" [(ngModel)]="utilisateur.sexe">
+        <option value="">-- Sélectionnez --</option>
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+        <option value="autre">Autre</option>
+      </select>
+    </div>
+
+    <!-- Objectif alimentaire -->
+    <div class="mb-3">
+      <label class="form-label">Objectif alimentaire</label>
+      <select class="form-select" name="objectif" [(ngModel)]="utilisateur.objectif">
+        <option value="perte">Perdre du poids</option>
+        <option value="maintien">Maintenir le poids</option>
+        <option value="muscle">Prendre du muscle</option>
+        <option value="equilibre">Manger équilibré</option>
+      </select>
+    </div>
+
+    <!-- Régime -->
+    <div class="mb-3">
+      <label class="form-label">Type de régime</label>
+      <select class="form-select" name="regime" [(ngModel)]="utilisateur.regime">
+        <option value="">-- Aucun --</option>
+        <option value="vegetarien">Végétarien</option>
+        <option value="vegan">Végétalien</option>
+        <option value="keto">Keto</option>
+        <option value="halal">Halal</option>
+        <option value="sans_gluten">Sans gluten</option>
+      </select>
+    </div>
+
+    <!-- Allergies -->
+    <div class="mb-3">
+      <label class="form-label">Allergies connues</label>
+      <textarea class="form-control" name="allergies" rows="2" [(ngModel)]="utilisateur.allergies"></textarea>
+    </div>
+
+    <!-- Préférences -->
+    <div class="mb-3">
+      <label class="form-label">Préférences alimentaires</label>
+      <textarea class="form-control" name="preferences" rows="2" [(ngModel)]="utilisateur.preferences"></textarea>
+    </div>
+
+    <!-- Niveau de cuisine -->
+    <div class="mb-3">
+      <label class="form-label">Niveau de cuisine</label>
+      <select class="form-select" name="niveau_cuisine" [(ngModel)]="utilisateur.niveau_cuisine">
+        <option value="debutant">Débutant</option>
+        <option value="intermediaire">Intermédiaire</option>
+        <option value="avance">Avancé</option>
+      </select>
+    </div>
+
+    <!-- CGU -->
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" name="cgu" [(ngModel)]="utilisateur.cgu" required>
+      <label class="form-check-label">
+        J’accepte les <a href="#">conditions d'utilisation</a> et la politique de confidentialité.
+      </label>
+    </div>
+      
+    <button type="submit" class="btn btn-primary">Créer mon compte</button>
+    <div class="mt-3 text-center">
+      <a [routerLink]="['/connexion']">Déjà inscrit ? Se connecter</a>
+    </div>
+  </form>
+</div>

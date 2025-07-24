@@ -1,18 +1,9 @@
-<app-header></app-header>
+<div class="app-container">
+  <app-header></app-header>
 
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
 
-<main class="main">
-  <div class="content">
-    <app-vue-de-semaine></app-vue-de-semaine>
-    <app-deplacement-des-recettes></app-deplacement-des-recettes>
-  </div>
-</main>
-<main class="main mt-4 container">
-  <div class="content">
-    <router-outlet /> 
-  </div>
-</main>
-
-<app-footer></app-footer>
-
-
+  <app-footer></app-footer>
+</div>
