@@ -1,94 +1,122 @@
-<div class="recette-detail-container">
-  <!-- Loading state -->
-  <div *ngIf="chargement" class="loading">
-    <p>Chargement...</p>
-  </div>
-
-  <!-- Recipe content -->
-  <div *ngIf="!chargement && recette" class="recette-content">
-    <!-- Header avec navigation -->
-    <div class="recette-header">
-      <button class="back-button" (click)="goBack()">
-        ← Retour aux recettes
-      </button>
-
-      <div class="recette-actions">
-        <button
-          class="edit-button"
-          [routerLink]="['/recette/edit', recette.id]"
-        >
-          ✏️ Modifier
-        </button>
-        <button
-          class="delete-button"
-          (click)="deleteRecette()"
-        >
-          🗑️ Supprimer
-        </button>
-      </div>
+<div class="details-container">
+  <div class="container details-content">
+    <!-- Loading state -->
+    <div *ngIf="chargement" class="loading animate__animated animate__fadeIn">
+      <i class="fas fa-spinner loading-icon"></i>
+      <h2>Chargement de la recette...</h2>
+      <p>Veuillez patienter</p>
     </div>
 
-    <!-- Image et titre principal -->
-    <div class="recette-hero">
-      <div class="recette-image">
-        <img [src]="recette.image" [alt]="recette.titre" />
+    <!-- Recipe content -->
+    <div *ngIf="!chargement && recette" class="recette-content">
+      <!-- Header avec navigation -->
+      <div class="recipe-header animate__animated animate__fadeInDown">
+        <div class="header-nav">
+          <button class="back-button" (click)="goBack()">
+            <i class="fas fa-arrow-left me-2"></i>
+            Retour aux recettes
+          </button>
+
+          <div class="recipe-actions">
+            <button
+              class="action-button edit-button"
+              [routerLink]="['/recette/edit', recette.id]"
+            >
+              <i class="fas fa-edit me-2"></i>
+              Modifier
+            </button>
+            <button
+              class="action-button delete-button"
+              (click)="deleteRecette()"
+            >
+              <i class="fas fa-trash me-2"></i>
+              Supprimer
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="recette-title-section">
-        <h1 class="recette-title">{{ recette.titre }}</h1>
+      <!-- Image et titre principal -->
+      <div class="recipe-hero animate__animated animate__fadeInUp">
+        <div class="recipe-image">
+          <img [src]="recette.image" [alt]="recette.titre" />
+        </div>
 
-        <div class="recette-meta">
-          <span class="categorie">{{ recette.categorie }}</span>
-          <span class="duree">⏱️ {{ formatDeLaDuree(recette.duree) }}</span>
-          <span class="difficulte" [class]="getDifficulteeClass(recette.difficulte)">
-            {{ recette.difficulte }}
-          </span>
+        <div class="recipe-title-section">
+          <h1 class="recipe-title">{{ recette.titre }}</h1>
+
+          <div class="recipe-meta">
+            <div class="meta-badge category">
+              <i class="fas fa-tag"></i>
+              {{ recette.categorie }}
+            </div>
+            <div class="meta-badge duration">
+              <i class="fas fa-clock"></i>
+              {{ formatDeLaDuree(recette.duree) }}
+            </div>
+            <div class="meta-badge difficulty" [class]="getDifficulteeClass(recette.difficulte)">
+              <i class="fas fa-chart-line"></i>
+              {{ recette.difficulte }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenu principal -->
+      <div class="recipe-main animate__animated animate__fadeInUp">
+        <!-- Section ingrédients -->
+        <div class="ingredients-section">
+          <h2 class="section-title">
+            <i class="fas fa-list section-icon"></i>
+            Ingrédients
+          </h2>
+          <ul class="ingredients-list">
+            <li *ngFor="let ingredient of recette.ingredients" class="ingredient-item">
+              <span class="ingredient-bullet">•</span>
+              <span>{{ ingredient }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section étapes -->
+        <div class="steps-section">
+          <h2 class="section-title">
+            <i class="fas fa-utensils section-icon"></i>
+            Étapes de préparation
+          </h2>
+          <ol class="steps-list">
+            <li *ngFor="let step of recette.etapes; let i = index" class="step-item">
+              <div class="step-number">{{ i + 1 }}</div>
+              <div class="step-content">{{ step }}</div>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Informations supplémentaires -->
+      <div class="recipe-footer animate__animated animate__fadeIn">
+        <div class="recipe-dates">
+          <p>
+            <span class="date-label">Créée le :</span>
+            {{ recette.createdAt | date:'dd/MM/yyyy à HH:mm' }}
+          </p>
+          <p *ngIf="recette.updatedAt !== recette.createdAt">
+            <span class="date-label">Modifiée le :</span>
+            {{ recette.updatedAt | date:'dd/MM/yyyy à HH:mm' }}
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Contenu principal -->
-    <div class="recette-main">
-      <!-- Section ingrédients -->
-      <div class="ingredients-section">
-        <h2>Ingrédients</h2>
-        <ul class="ingredients-list">
-          <li *ngFor="let ingredient of recette.ingredients" class="ingredient-item">
-            <span class="ingredient-bullet">•</span>
-            {{ ingredient }}
-          </li>
-        </ul>
-      </div>
-
-      <!-- Section étapes -->
-      <div class="steps-section">
-        <h2>Étapes de préparation</h2>
-        <ol class="steps-list">
-          <li *ngFor="let step of recette.etapes; let i = index" class="step-item">
-            <div class="step-number">{{ i + 1 }}</div>
-            <div class="step-content">{{ step }}</div>
-          </li>
-        </ol>
-      </div>
+    <!-- Erreur de chargement -->
+    <div *ngIf="!chargement && !recette" class="error animate__animated animate__fadeIn">
+      <i class="fas fa-exclamation-triangle error-icon"></i>
+      <h2>Recette introuvable</h2>
+      <p>La recette que vous cherchez n'existe pas ou a été supprimée.</p>
+      <button class="back-button" (click)="goBack()">
+        <i class="fas fa-arrow-left me-2"></i>
+        Retour aux recettes
+      </button>
     </div>
-
-    <!-- Informations supplémentaires -->
-    <div class="recette-footer">
-      <div class="recette-dates">
-        <p><strong>Créée le :</strong> {{ recette.createdAt | date:'dd/MM/yyyy à HH:mm' }}</p>
-        <p *ngIf="recette.updatedAt !== recette.createdAt">
-          <strong>Modifiée le :</strong> {{ recette.updatedAt | date:'dd/MM/yyyy à HH:mm' }}
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Erreur de chargement -->
-  <div *ngIf="!chargement && !recette" class="error">
-    <h2>Recette introuvable</h2>
-    <p>La recett que vous cherchez n'existe pas ou a été supprimée.</p>
-    <button class="back-button" (click)="goBack()">
-      Retour aux recettes
-    </button>
   </div>
 </div>
