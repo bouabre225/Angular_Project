@@ -1,206 +1,253 @@
-<div class="recette-form-container">
-  <div class="form-header">
-    <h1>{{ isEditMode ? 'Modifier la recette' : 'Nouvelle recette' }}</h1>
-    <button class="cancel-button" (click)="cancel()">
-      ← Annuler
-    </button>
-  </div>
-
-  <form [formGroup]="recetteForm" (ngSubmit)="onSubmit()" class="recette-form">
-    <!-- Informations de base -->
-    <div class="form-section">
-      <h2>Informations générales</h2>
-
-      <!-- Titre -->
-      <div class="form-group">
-        <label for="titre">Titre de la recette *</label>
-        <input
-          id="titre"
-          type="text"
-          formControlName="titre"
-          placeholder="Ex: Salade César"
-          class="form-input"
-          [class.error]="hasError('titre', 'required') || hasError('titre', 'minlength')"
-        />
-        <div class="error-message" *ngIf="hasError('titre', 'required')">
-          Le titre est obligatoire
-        </div>
-        <div class="error-message" *ngIf="hasError('titre', 'minlength')">
-          Le titre doit contenir au moins 3 caractères
-        </div>
-      </div>
-
-      <!-- Image -->
-      <div class="form-group">
-        <label for="image">URL de l'image *</label>
-        <input
-          id="image"
-          type="url"
-          formControlName="image"
-          placeholder="https://exemple.com/image.jpg"
-          class="form-input"
-          [class.error]="hasError('image', 'required') || hasError('image', 'pattern')"
-        />
-        <div class="error-message" *ngIf="hasError('image', 'required')">
-          L'URL de l'image est obligatoire
-        </div>
-        <div class="error-message" *ngIf="hasError('image', 'pattern')">
-          Veuillez entrer une URL valide (http:// ou https://)
-        </div>
-        <!-- Aperçu de l'image -->
-        <div class="image-preview" *ngIf="recetteForm.get('image')?.value && recetteForm.get('image')?.valid">
-          <img [src]="recetteForm.get('image')?.value" alt="Aperçu" />
-        </div>
-      </div>
-
-      <!-- Durée, Difficulté, Catégorie -->
-      <div class="form-row">
-        <div class="form-group">
-          <label for="duree">Durée (minutes) *</label>
-          <input
-            id="duree"
-            type="number"
-            formControlName="duree"
-            min="1"
-            max="600"
-            class="form-input"
-            [class.error]="hasError('duree', 'required') || hasError('duree', 'min') || hasError('duree', 'max')"
-          />
-          <div class="error-message" *ngIf="hasError('duree', 'required')">
-            La durée est obligatoire
-          </div>
-          <div class="error-message" *ngIf="hasError('duree', 'min') || hasError('duree', 'max')">
-            La durée doit être entre 1 et 600 minutes
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="difficulte">Difficulté *</label>
-          <select
-            id="difficulte"
-            formControlName="difficulte"
-            class="form-select"
-          >
-            <option *ngFor="let difficulte of difficulties" [value]="difficulte">
-              {{ difficulte }}
-            </option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="categorie">Catégorie *</label>
-          <select
-            id="categorie"
-            formControlName="categorie"
-            class="form-select"
-          >
-            <option *ngFor="let categorie of categories" [value]="categorie">
-              {{ categorie }}
-            </option>
-          </select>
-        </div>
+<div class="formulaire-container">
+  <div class="container formulaire-content">
+    <!-- En-tête du formulaire -->
+    <div class="form-header animate__animated animate__fadeInDown">
+      <div class="header-nav">
+        <h1 class="form-title">{{ isEditMode ? 'Modifier la recette' : 'Nouvelle recette' }}</h1>
+        <button class="cancel-button" (click)="cancel()">
+          <i class="fas fa-times me-2"></i>
+          Annuler
+        </button>
       </div>
     </div>
 
-    <!-- Ingrédients -->
-    <div class="form-section">
-      <div class="section-header">
-        <h2>Ingrédients</h2>
-        <button type="button" class="add-button" (click)="addIngredient()">
-          + Ajouter un ingrédient
-        </button>
-      </div>
+    <form [formGroup]="recetteForm" (ngSubmit)="onSubmit()" class="recette-form animate__animated animate__fadeInUp">
+      <!-- Informations de base -->
+      <div class="form-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-info-circle section-icon"></i>
+            Informations générales
+          </h2>
+        </div>
 
-      <div formArrayName="ingredients" class="dynamic-list">
-        <div
-          *ngFor="let ingredient of ingredients.controls; let i = index"
-          [formGroupName]="i"
-          class="dynamic-item"
-        >
+        <!-- Titre -->
+        <div class="form-group">
+          <label class="form-label" for="titre">
+            <i class="fas fa-heading label-icon"></i>
+            Titre de la recette *
+          </label>
           <input
+            id="titre"
             type="text"
-            formControlName="value"
-            placeholder="Ex: 200g de farine"
+            formControlName="titre"
+            placeholder="Ex: Salade César"
             class="form-input"
-            [class.error]="hasArrayError('ingredients', i, 'required') || hasArrayError('ingredients', i, 'minlength')"
+            [class.error]="hasError('titre', 'required') || hasError('titre', 'minlength')"
           />
-          <button
-            type="button"
-            class="remove-button"
-            (click)="retirerIngredient(i)"
-            [disabled]="ingredients.length <= 1"
-            title="Supprimer cet ingrédient"
-          >
-            ×
-          </button>
-          <div class="error-message" *ngIf="hasArrayError('ingredients', i, 'required')">
-            L'ingrédient est obligatoire
+          <div class="error-message" *ngIf="hasError('titre', 'required')">
+            <i class="fas fa-exclamation-circle error-icon"></i>
+            Le titre est obligatoire
           </div>
-          <div class="error-message" *ngIf="hasArrayError('ingredients', i, 'minlength')">
-            L'ingrédient doit contenir au moins 2 caractères
+          <div class="error-message" *ngIf="hasError('titre', 'minlength')">
+            <i class="fas fa-exclamation-circle error-icon"></i>
+            Le titre doit contenir au moins 3 caractères
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="form-group">
+          <label class="form-label" for="image">
+            <i class="fas fa-image label-icon"></i>
+            URL de l'image *
+          </label>
+          <input
+            id="image"
+            type="url"
+            formControlName="image"
+            placeholder="https://exemple.com/image.jpg"
+            class="form-input"
+            [class.error]="hasError('image', 'required') || hasError('image', 'pattern')"
+          />
+          <div class="error-message" *ngIf="hasError('image', 'required')">
+            <i class="fas fa-exclamation-circle error-icon"></i>
+            L'URL de l'image est obligatoire
+          </div>
+          <div class="error-message" *ngIf="hasError('image', 'pattern')">
+            <i class="fas fa-exclamation-circle error-icon"></i>
+            Veuillez entrer une URL valide (http:// ou https://)
+          </div>
+          <!-- Aperçu de l'image -->
+          <div class="image-preview" *ngIf="recetteForm.get('image')?.value && recetteForm.get('image')?.valid">
+            <img [src]="recetteForm.get('image')?.value" alt="Aperçu" />
+          </div>
+        </div>
+
+        <!-- Durée, Difficulté, Catégorie -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="duree">
+              <i class="fas fa-clock label-icon"></i>
+              Durée (minutes) *
+            </label>
+            <input
+              id="duree"
+              type="number"
+              formControlName="duree"
+              min="1"
+              max="600"
+              class="form-input"
+              [class.error]="hasError('duree', 'required') || hasError('duree', 'min') || hasError('duree', 'max')"
+            />
+            <div class="error-message" *ngIf="hasError('duree', 'required')">
+              <i class="fas fa-exclamation-circle error-icon"></i>
+              La durée est obligatoire
+            </div>
+            <div class="error-message" *ngIf="hasError('duree', 'min') || hasError('duree', 'max')">
+              <i class="fas fa-exclamation-circle error-icon"></i>
+              La durée doit être entre 1 et 600 minutes
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="difficulte">
+              <i class="fas fa-chart-line label-icon"></i>
+              Difficulté *
+            </label>
+            <select
+              id="difficulte"
+              formControlName="difficulte"
+              class="form-select"
+            >
+              <option *ngFor="let difficulte of difficulties" [value]="difficulte">
+                {{ difficulte }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="categorie">
+              <i class="fas fa-tags label-icon"></i>
+              Catégorie *
+            </label>
+            <select
+              id="categorie"
+              formControlName="categorie"
+              class="form-select"
+            >
+              <option *ngFor="let categorie of categories" [value]="categorie">
+                {{ categorie }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Étapes -->
-    <div class="form-section">
-      <div class="section-header">
-        <h2>Étapes de préparation</h2>
-        <button type="button" class="add-button" (click)="addEtape()">
-          + Ajouter une étape
+      <!-- Ingrédients -->
+      <div class="form-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-list section-icon"></i>
+            Ingrédients
+          </h2>
+          <button type="button" class="add-button" (click)="addIngredient()">
+            <i class="fas fa-plus me-2"></i>
+            Ajouter un ingrédient
+          </button>
+        </div>
+
+        <div formArrayName="ingredients" class="dynamic-list">
+          <div
+            *ngFor="let ingredient of ingredients.controls; let i = index"
+            [formGroupName]="i"
+            class="dynamic-item"
+          >
+            <div class="ingredient-bullet">•</div>
+            <input
+              type="text"
+              formControlName="value"
+              placeholder="Ex: 200g de farine"
+              class="form-input"
+              [class.error]="hasArrayError('ingredients', i, 'required') || hasArrayError('ingredients', i, 'minlength')"
+            />
+            <button
+              type="button"
+              class="remove-button"
+              (click)="retirerIngredient(i)"
+              [disabled]="ingredients.length <= 1"
+              title="Supprimer cet ingrédient"
+            >
+              ×
+            </button>
+            <div class="error-message" *ngIf="hasArrayError('ingredients', i, 'required')">
+              <i class="fas fa-exclamation-circle error-icon"></i>
+              L'ingrédient est obligatoire
+            </div>
+            <div class="error-message" *ngIf="hasArrayError('ingredients', i, 'minlength')">
+              <i class="fas fa-exclamation-circle error-icon"></i>
+              L'ingrédient doit contenir au moins 2 caractères
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étapes -->
+      <div class="form-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-utensils section-icon"></i>
+            Étapes de préparation
+          </h2>
+          <button type="button" class="add-button" (click)="addEtape()">
+            <i class="fas fa-plus me-2"></i>
+            Ajouter une étape
+          </button>
+        </div>
+
+        <div formArrayName="etapes" class="dynamic-list">
+          <div
+            *ngFor="let etape of etapes.controls; let i = index"
+            [formGroupName]="i"
+            class="dynamic-item"
+          >
+            <div class="step-number">{{ i + 1 }}</div>
+            <textarea
+              formControlName="value"
+              placeholder="Décrivez cette étape de préparation..."
+              class="form-textarea"
+              rows="3"
+              [class.error]="hasArrayError('etapes', i, 'required') || hasArrayError('etapes', i, 'minlength')"
+            ></textarea>
+            <button
+              type="button"
+              class="remove-button"
+              (click)="retirerEtape(i)"
+              [disabled]="etapes.length <= 1"
+              title="Supprimer cette étape"
+            >
+              ×
+            </button>
+            <div class="error-message" *ngIf="hasArrayError('etapes', i, 'required')">
+              <i class="fas fa-exclamation-circle error-icon"></i>
+              L'étape est obligatoire
+            </div>
+            <div class="error-message" *ngIf="hasArrayError('etapes', i, 'minlength')">
+              <i class="fas fa-exclamation-circle error-icon"></i>
+              L'étape doit contenir au moins 5 caractères
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boutons de soumission -->
+      <div class="form-actions">
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="cancel()"
+        >
+          <i class="fas fa-times me-2"></i>
+          Annuler
+        </button>
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="recetteForm.invalid || loading"
+        >
+          <i class="fas fa-save me-2"></i>
+          {{ loading ? 'Sauvegarde...' : (isEditMode ? 'Modifier la recette' : 'Créer la recette') }}
         </button>
       </div>
-
-      <div formArrayName="etapes" class="dynamic-list">
-        <div
-          *ngFor="let etape of etapes.controls; let i = index"
-          [formGroupName]="i"
-          class="dynamic-item"
-        >
-          <div class="step-number">{{ i + 1 }}</div>
-          <textarea
-            formControlName="value"
-            placeholder="Décrivez cette étape de préparation..."
-            class="form-textarea"
-            rows="3"
-            [class.error]="hasArrayError('etapes', i, 'required') || hasArrayError('etapes', i, 'minlength')"
-          ></textarea>
-          <button
-            type="button"
-            class="remove-button"
-            (click)="retirerEtape(i)"
-            [disabled]="etapes.length <= 1"
-            title="Supprimer cette étape"
-          >
-            ×
-          </button>
-          <div class="error-message" *ngIf="hasArrayError('etapes', i, 'required')">
-            L'étape est obligatoire
-          </div>
-          <div class="error-message" *ngIf="hasArrayError('etapes', i, 'minlength')">
-            L'étape doit contenir au moins 5 caractères
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Boutons de soumission -->
-    <div class="form-actions">
-      <button
-        type="button"
-        class="cancel-button"
-        (click)="cancel()"
-      >
-        Annuler
-      </button>
-      <button
-        type="submit"
-        class="submit-button"
-        [disabled]="recetteForm.invalid || loading"
-      >
-        {{ loading ? 'Sauvegarde...' : (isEditMode ? 'Modifier la recette' : 'Créer la recette') }}
-      </button>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
