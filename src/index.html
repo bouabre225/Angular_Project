@@ -1,13 +1,79 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>RecetteProject</title>
+  <title>recette Manager - Gestionnaire de Recettes</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description" content="Gestionnaire de recettes de cuisine simple et efficace. Créez, modifiez et organisez vos recettes préférées.">
+  <meta name="keywords" content="recettes, cuisine, gestionnaire, cooking, recettes">
+  <meta name="author" content="recette Manager">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <!-- Preconnect pour optimiser les performances -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts (optionnel) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Theme color pour les navigateurs mobiles -->
+  <meta name="theme-color" content="#007bff">
+  <meta name="msapplication-TileColor" content="#007bff">
 </head>
 <body>
-  <app-root></app-root>
+  <!-- Composant racine Angular -->
+  <app-root>
+    <!-- Loading spinner pendant le chargement initial -->
+    <div id="initial-loader" style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f8f9fa;
+      font-family: 'Inter', sans-serif;
+      flex-direction: column;
+      gap: 1rem;
+    ">
+      <div style="
+        width: 40px;
+        height: 40px;
+        border: 4px solid #e3f2fd;
+        border-top: 4px solid #007bff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      "></div>
+      <p style="color: #666; margin: 0;">Chargement de recette Manager...</p>
+    </div>
+  </app-root>
+
+  <!-- Styles pour le loader initial -->
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Cache le loader une fois Angular chargé */
+    app-root:not(:empty) #initial-loader {
+      display: none;
+    }
+  </style>
+
+  <!-- Script pour cacher le loader (fallback) -->
+  <script>
+    // Cache le loader après 5 secondes maximum
+    setTimeout(() => {
+      const loader = document.getElementById('initial-loader');
+      if (loader) {
+        loader.style.display = 'none';
+      }
+    }, 5000);
+  </script>
 </body>
 </html>
