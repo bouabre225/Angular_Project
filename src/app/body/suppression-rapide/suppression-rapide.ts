@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-suppression-rapide',
@@ -6,6 +6,8 @@ import { AfterViewInit, Component } from '@angular/core';
   styleUrls: ['./suppression-rapide.css']
 })
 export class SuppressionRapideComponent implements AfterViewInit {
+
+  constructor() { }
 
   ngAfterViewInit(): void {
     document.querySelectorAll('.delete-item').forEach(button => {
