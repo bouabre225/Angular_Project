@@ -1,0 +1,15 @@
+<div class="recettes-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>📘 Recettes</h2>
+        <a [routerLink]="['/ajout-recette']" class="btn btn-success">➕ Ajouter une recette</a>
+    </div>
+    <div class="carte" *ngFor="let recette of recettes">
+    <img [src]="recette.image" [alt]="recette.titre" class="image-recette" />
+    <div class="contenu">
+        <h3 class="card-title">{{ recette.titre }}</h3>
+        <p class="card-text">⏱ {{ recette.duree }} min</p>
+        <p class="card-text">🔥 Difficulté : {{ recette.difficulte }}</p>
+        <a [routerLink]="['/recette', recette.id]" class="btn btn-primary">Voir détail</a>
+    </div>
+    </div>
+</div>
