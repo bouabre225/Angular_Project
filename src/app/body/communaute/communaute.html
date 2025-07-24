@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="section-content">
-                        <h3 class="section-name">{{ section.title }}</h3>
+                        <h3 class="section-name">{{ section.titre }}</h3>
                         <p class="section-description-card">{{ section.description }}</p>
 
                         <div class="section-stats">
@@ -66,9 +66,9 @@
 
                         <div class="section-last-post" *ngIf="section.lastPost">
                             <div class="last-post-info">
-                                <div class="last-post-title">{{ section.lastPost.title }}</div>
+                                <div class="last-post-title">{{ section.lastPost.titre }}</div>
                                 <div class="last-post-meta">
-                                    par {{ section.lastPost.author }} • {{ section.lastPost.date | date:'short' }}
+                                    par {{ section.lastPost.auteur }} • {{ section.lastPost.date | date:'short' }}
                                 </div>
                             </div>
                         </div>
