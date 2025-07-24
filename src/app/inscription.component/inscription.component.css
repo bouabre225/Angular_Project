@@ -1,0 +1,257 @@
+form label {
+  font-weight: 600;
+}
+
+.container {
+  max-width: 600px;
+}
+
+/* General Reset and Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3e6cb 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Container Styling */
+.container.mt-5 {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading */
+h2.mb-4 {
+  text-align: center;
+  color: #ff6f61;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+form {
+  display: grid;
+  gap: 20px;
+}
+
+/* Form Group Styling */
+.mb-3 {
+  position: relative;
+  animation: slideIn 0.5s ease-in-out;
+  animation-fill-mode: backwards;
+}
+
+/* Sequential Animation for Form Groups */
+.mb-3:nth-child(1) { animation-delay: 0.1s; }
+.mb-3:nth-child(2) { animation-delay: 0.2s; }
+.mb-3:nth-child(3) { animation-delay: 0.3s; }
+.mb-3:nth-child(4) { animation-delay: 0.4s; }
+.mb-3:nth-child(5) { animation-delay: 0.5s; }
+.mb-3:nth-child(6) { animation-delay: 0.6s; }
+.mb-3:nth-child(7) { animation-delay: 0.7s; }
+.mb-3:nth-child(8) { animation-delay: 0.8s; }
+.mb-3:nth-child(9) { animation-delay: 0.9s; }
+.mb-3:nth-child(10) { animation-delay: 1s; }
+
+/* Label Styling */
+.form-label {
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Input Styling */
+.form-control, .form-select, textarea.form-control {
+  border: 2px solid #81c784;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f1f8e9;
+}
+
+.form-control:focus, .form-select:focus, textarea.form-control:focus {
+  border-color: #ff6f61;
+  box-shadow: 0 0 8px rgba(255, 111, 97, 0.3);
+  outline: none;
+  background: #fff;
+}
+
+/* Placeholder Styling */
+.form-control::placeholder, textarea.form-control::placeholder {
+  color: #a5d6a7;
+  font-style: italic;
+}
+
+/* Validation Styling */
+.form-control:invalid:not(:placeholder-shown), .form-select:invalid:not(:placeholder-shown) {
+  border-color: #ef5350;
+  background: #ffebee;
+}
+
+.form-control:valid:not(:placeholder-shown), .form-select:valid:not(:placeholder-shown) {
+  border-color: #43a047;
+}
+
+/* Checkbox Styling */
+.form-check-input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #81c784;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-check-input:checked {
+  background: #ff6f61 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>') center/16px no-repeat;
+  border-color: #ff6f61;
+}
+
+.form-check-label {
+  color: #2e7d32;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.form-check-label a {
+  color: #0288d1;
+  text-decoration: none;
+}
+
+.form-check-label a:hover {
+  text-decoration: underline;
+}
+
+/* Button Styling */
+.btn.btn-primary {
+  background: linear-gradient(45deg, #ff6f61, #ffb300);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 111, 97, 0.4);
+}
+
+/* Card Styling for Objectif Alimentaire */
+.mb-3:has(select[name="objectif"]) .form-select {
+  background: linear-gradient(45deg, #ffb300, #ff6f61);
+  color: white;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mb-3:has(select[name="objectif"]) .form-select option {
+  background: #fff;
+  color: #2e7d32;
+}
+
+/* Emoji Icons for Labels */
+.form-label::before {
+  content: '';
+  font-size: 1.2rem;
+}
+
+.mb-3:has(input[name="nom"]) .form-label::before { content: '👤'; }
+.mb-3:has(input[name="email"]) .form-label::before { content: '📧'; }
+.mb-3:has(input[name="mot_de_passe"]) .form-label::before { content: '🔒'; }
+.mb-3:has(input[name="date_naissance"]) .form-label::before { content: '🎂'; }
+.mb-3:has(select[name="sexe"]) .form-label::before { content: '⚥'; }
+.mb-3:has(select[name="objectif"]) .form-label::before { content: '🥗'; }
+.mb-3:has(select[name="regime"]) .form-label::before { content: '🍽️'; }
+.mb-3:has(textarea[name="allergies"]) .form-label::before { content: '🚫'; }
+.mb-3:has(textarea[name="preferences"]) .form-label::before { content: '❤️'; }
+.mb-3:has(select[name="niveau_cuisine"]) .form-label::before { content: '👨‍🍳'; }
+
+/* Floating Ingredients Animation */
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-20px) rotate(10deg); opacity: 0.8; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+}
+
+.floating-ingredient {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.3;
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+.floating-ingredient:nth-child(1) { left: 10%; top: 20%; animation: float 6s infinite; }
+.floating-ingredient:nth-child(2) { right: 15%; top: 40%; animation: float 8s infinite 1s; }
+.floating-ingredient:nth-child(3) { left: 20%; top: 60%; animation: float 7s infinite 2s; }
+.floating-ingredient:nth-child(4) { right: 25%; top: 80%; animation: float 9s infinite 3s; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container.mt-5 {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  h2.mb-4 {
+    font-size: 2rem;
+  }
+
+  .form-control, .form-select, textarea.form-control {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .btn.btn-primary {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .floating-ingredient {
+    font-size: 1.5rem;
+  }
+}

@@ -40,6 +40,16 @@ export const routes: Routes = [
     title: "Vue de Semaine",
   },
   {
+    path: "connexion",
+    loadComponent: () => import("./connexion.component/connexion.component").then(m => m.ConnexionComponent),
+    title: "Connexion"
+  },
+  {
+    path: "inscription",
+    loadComponent: () => import("./inscription.component/inscription.component").then(m => m.InscriptionComponent),
+    title: "Inscription"
+  },
+  {
     path: "**",
     redirectTo: "",
     pathMatch: "full",
