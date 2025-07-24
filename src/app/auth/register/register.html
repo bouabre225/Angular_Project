@@ -1,0 +1,232 @@
+<div class="auth-container">
+  <div class="container auth-content">
+    <!-- En-tête -->
+    <div class="auth-header animate__animated animate__fadeInDown">
+      <h1 class="auth-title">Inscription</h1>
+      <p class="auth-subtitle">Créez votre compte Recettes de Cuisine</p>
+    </div>
+
+    <!-- Formulaire d'inscription -->
+    <div class="auth-form-container animate__animated animate__fadeInUp">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+        <!-- Message d'erreur -->
+        <div *ngIf="errorMessage" class="error-alert animate__animated animate__shakeX">
+          <i class="fas fa-exclamation-triangle"></i>
+          {{ errorMessage }}
+        </div>
+
+        <!-- Nom et Prénom -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="firstName">
+              <i class="fas fa-user label-icon"></i>
+              Prénom
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              formControlName="firstName"
+              placeholder="Votre prénom"
+              class="form-input"
+              [class.error]="hasError('firstName', 'required') || hasError('firstName', 'minlength')"
+            />
+            <div class="error-message" *ngIf="hasError('firstName', 'required')">
+              <i class="fas fa-exclamation-circle"></i>
+              Le prénom est obligatoire
+            </div>
+            <div class="error-message" *ngIf="hasError('firstName', 'minlength')">
+              <i class="fas fa-exclamation-circle"></i>
+              Le prénom doit contenir au moins 2 caractères
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="lastName">
+              <i class="fas fa-user label-icon"></i>
+              Nom
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              formControlName="lastName"
+              placeholder="Votre nom"
+              class="form-input"
+              [class.error]="hasError('lastName', 'required') || hasError('lastName', 'minlength')"
+            />
+            <div class="error-message" *ngIf="hasError('lastName', 'required')">
+              <i class="fas fa-exclamation-circle"></i>
+              Le nom est obligatoire
+            </div>
+            <div class="error-message" *ngIf="hasError('lastName', 'minlength')">
+              <i class="fas fa-exclamation-circle"></i>
+              Le nom doit contenir au moins 2 caractères
+            </div>
+          </div>
+        </div>
+
+        <!-- Nom d'utilisateur -->
+        <div class="form-group">
+          <label class="form-label" for="username">
+            <i class="fas fa-at label-icon"></i>
+            Nom d'utilisateur
+          </label>
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Votre nom d'utilisateur"
+            class="form-input"
+            [class.error]="hasError('username', 'required') || hasError('username', 'minlength') || hasError('username', 'pattern')"
+          />
+          <div class="error-message" *ngIf="hasError('username', 'required')">
+            <i class="fas fa-exclamation-circle"></i>
+            Le nom d'utilisateur est obligatoire
+          </div>
+          <div class="error-message" *ngIf="hasError('username', 'minlength')">
+            <i class="fas fa-exclamation-circle"></i>
+            Le nom d'utilisateur doit contenir au moins 3 caractères
+          </div>
+          <div class="error-message" *ngIf="hasError('username', 'pattern')">
+            <i class="fas fa-exclamation-circle"></i>
+            Seules les lettres, chiffres et _ sont autorisés
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="email">
+            <i class="fas fa-envelope label-icon"></i>
+            Adresse email
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="votre@email.com"
+            class="form-input"
+            [class.error]="hasError('email', 'required') || hasError('email', 'email')"
+          />
+          <div class="error-message" *ngIf="hasError('email', 'required')">
+            <i class="fas fa-exclamation-circle"></i>
+            L'email est obligatoire
+          </div>
+          <div class="error-message" *ngIf="hasError('email', 'email')">
+            <i class="fas fa-exclamation-circle"></i>
+            Veuillez entrer un email valide
+          </div>
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="form-group">
+          <label class="form-label" for="password">
+            <i class="fas fa-lock label-icon"></i>
+            Mot de passe
+          </label>
+          <div class="password-input-container">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Votre mot de passe"
+              class="form-input password-input"
+              [class.error]="hasError('password', 'required') || hasError('password', 'minlength')"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePasswordVisibility('password')"
+            >
+              <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+          <div class="error-message" *ngIf="hasError('password', 'required')">
+            <i class="fas fa-exclamation-circle"></i>
+            Le mot de passe est obligatoire
+          </div>
+          <div class="error-message" *ngIf="hasError('password', 'minlength')">
+            <i class="fas fa-exclamation-circle"></i>
+            Le mot de passe doit contenir au moins 6 caractères
+          </div>
+        </div>
+
+        <!-- Confirmation mot de passe -->
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">
+            <i class="fas fa-lock label-icon"></i>
+            Confirmer le mot de passe
+          </label>
+          <div class="password-input-container">
+            <input
+              id="confirmPassword"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              placeholder="Confirmez votre mot de passe"
+              class="form-input password-input"
+              [class.error]="hasError('confirmPassword', 'required') || hasError('confirmPassword', 'passwordMismatch')"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePasswordVisibility('confirmPassword')"
+            >
+              <i [class]="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+          <div class="error-message" *ngIf="hasError('confirmPassword', 'required')">
+            <i class="fas fa-exclamation-circle"></i>
+            La confirmation est obligatoire
+          </div>
+          <div class="error-message" *ngIf="hasError('confirmPassword', 'passwordMismatch')">
+            <i class="fas fa-exclamation-circle"></i>
+            Les mots de passe ne correspondent pas
+          </div>
+        </div>
+
+        <!-- Accepter les conditions -->
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              formControlName="acceptTerms"
+              class="checkbox-input"
+            />
+            <span class="checkbox-custom"></span>
+            J'accepte les <a href="#" class="terms-link">conditions d'utilisation</a> et la <a href="#" class="terms-link">politique de confidentialité</a>
+          </label>
+          <div class="error-message" *ngIf="hasError('acceptTerms', 'required')">
+            <i class="fas fa-exclamation-circle"></i>
+            Vous devez accepter les conditions
+          </div>
+        </div>
+
+        <!-- Bouton d'inscription -->
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="registerForm.invalid || loading"
+        >
+          <i *ngIf="loading" class="fas fa-spinner fa-spin"></i>
+          <i *ngIf="!loading" class="fas fa-user-plus"></i>
+          {{ loading ? 'Inscription...' : 'Créer mon compte' }}
+        </button>
+
+        <!-- Lien vers la connexion -->
+        <div class="auth-link">
+          <p>Déjà un compte ?</p>
+          <a routerLink="/auth/login" class="link-btn">
+            <i class="fas fa-sign-in-alt"></i>
+            Se connecter
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Retour à l'accueil -->
+    <div class="back-home">
+      <a routerLink="/" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Retour à l'accueil
+      </a>
+    </div>
+  </div>
+</div>

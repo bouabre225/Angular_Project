@@ -1,7 +1,73 @@
-<header>
+<header (click)="onDocumentClick($event)">
     <div class="container header-content">
         <span class="logo animate__animated animate__fadeInDown" (click)="navigateToRecettes()">Recettes de cuisine</span>
         <p class="tagline animate__animated animate__fadeIn">Découvrez le plaisir de cuisiner</p>
+
+        <!-- Boutons d'authentification -->
+        <div class="auth-section animate__animated animate__fadeInDown">
+            <!-- Utilisateur non connecté -->
+            <div *ngIf="!isAuthenticated" class="auth-buttons">
+                <button class="auth-btn login-btn" (click)="navigateToLogin()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Connexion
+                </button>
+                <button class="auth-btn register-btn" (click)="navigateToRegister()">
+                    <i class="fas fa-user-plus"></i>
+                    Inscription
+                </button>
+            </div>
+
+            <!-- Utilisateur connecté -->
+            <div *ngIf="isAuthenticated && currentUser" class="user-section">
+                <div class="user-menu-container">
+                    <button class="user-profile-btn" (click)="toggleUserMenu()">
+                        <div class="user-avatar">
+                            <img *ngIf="currentUser.avatar" [src]="currentUser.avatar" [alt]="currentUser.username">
+                            <i *ngIf="!currentUser.avatar" class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+                            <span class="user-username">{{ currentUser.username }}</span>
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-icon" [class.rotated]="showUserMenu"></i>
+                    </button>
+
+                    <!-- Menu déroulant utilisateur -->
+                    <div class="user-dropdown" [class.show]="showUserMenu">
+                        <div class="dropdown-header">
+                            <div class="user-avatar-large">
+                                <img *ngIf="currentUser.avatar" [src]="currentUser.avatar" [alt]="currentUser.username">
+                                <i *ngIf="!currentUser.avatar" class="fas fa-user"></i>
+                            </div>
+                            <div class="dropdown-user-info">
+                                <span class="dropdown-user-name">{{ currentUser.firstName }} {{ currentUser.lastName }}</span>
+                                <span class="dropdown-user-email">{{ currentUser.email }}</span>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-menu">
+                            <a routerLink="/profile" class="dropdown-item" (click)="closeUserMenu()">
+                                <i class="fas fa-user-circle"></i>
+                                Mon Profil
+                            </a>
+                            <a routerLink="/recette/new" class="dropdown-item" (click)="closeUserMenu()">
+                                <i class="fas fa-plus"></i>
+                                Nouvelle Recette
+                            </a>
+                            <a routerLink="/planning" class="dropdown-item" (click)="closeUserMenu()">
+                                <i class="fas fa-calendar-alt"></i>
+                                Mon Planning
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item logout-item" (click)="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Déconnexion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-4 animate__animated animate__fadeInLeft">
@@ -13,14 +79,14 @@
             </div>
             <div class="col-md-4 animate__animated animate__fadeInUp">
                 <div class="header-box text-center" (click)="navigateToApprentissage()">
-                    <i class="fas fa-user-graduate header-icon"></i>
+                    <i class="fas fa-book header-icon"></i>
                     <h3 class="header-title">Apprentissage</h3>
                     <p class="header-text">Des recettes détaillées avec instructions claires, accessibles à tous les niveaux de compétence culinaire.</p>
                 </div>
             </div>
             <div class="col-md-4 animate__animated animate__fadeInRight">
                 <div class="header-box text-center" (click)="navigateToCommunaute()">
-                    <i class="fas fa-heart header-icon"></i>
+                    <i class="fas fa-users header-icon"></i>
                     <h3 class="header-title">Communauté</h3>
                     <p class="header-text">Partagez vos créations, échangez des astuces et recevez des conseils de passionnés.</p>
                 </div>

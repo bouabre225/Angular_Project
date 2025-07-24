@@ -1,0 +1,128 @@
+<div class="auth-container">
+  <div class="container auth-content">
+    <!-- En-tête -->
+    <div class="auth-header animate__animated animate__fadeInDown">
+      <h1 class="auth-title">Connexion</h1>
+      <p class="auth-subtitle">Connectez-vous à votre compte Recettes de Cuisine</p>
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <div class="auth-form-container animate__animated animate__fadeInUp">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+        <!-- Message d'erreur -->
+        <div *ngIf="errorMessage" class="error-alert animate__animated animate__shakeX">
+          <i class="fas fa-exclamation-triangle"></i>
+          {{ errorMessage }}
+        </div>
+
+        <!-- Bouton démo -->
+        <div class="demo-section">
+          <button type="button" class="demo-btn" (click)="fillDemoCredentials()">
+            <i class="fas fa-magic"></i>
+            Utiliser le compte démo
+          </button>
+          <small class="demo-info">Email: demorecettes.com | Mot de passe: password123</small>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="email">
+            <i class="fas fa-envelope label-icon"></i>
+            Adresse email
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="votre@email.com"
+            class="form-input"
+            [class.error]="hasError('email', 'required') || hasError('email', 'email')"
+          />
+          <div class="error-message" *ngIf="hasError('email', 'required')">
+            <i class="fas fa-exclamation-circle"></i>
+            L'email est obligatoire
+          </div>
+          <div class="error-message" *ngIf="hasError('email', 'email')">
+            <i class="fas fa-exclamation-circle"></i>
+            Veuillez entrer un email valide
+          </div>
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="form-group">
+          <label class="form-label" for="password">
+            <i class="fas fa-lock label-icon"></i>
+            Mot de passe
+          </label>
+          <div class="password-input-container">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Votre mot de passe"
+              class="form-input password-input"
+              [class.error]="hasError('password', 'required') || hasError('password', 'minlength')"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePasswordVisibility()"
+            >
+              <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+          <div class="error-message" *ngIf="hasError('password', 'required')">
+            <i class="fas fa-exclamation-circle"></i>
+            Le mot de passe est obligatoire
+          </div>
+          <div class="error-message" *ngIf="hasError('password', 'minlength')">
+            <i class="fas fa-exclamation-circle"></i>
+            Le mot de passe doit contenir au moins 6 caractères
+          </div>
+        </div>
+
+        <!-- Se souvenir de moi -->
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              formControlName="rememberMe"
+              class="checkbox-input"
+            />
+            <span class="checkbox-custom"></span>
+            Se souvenir de moi
+          </label>
+          <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+        </div>
+
+        <!-- Bouton de connexion -->
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="loginForm.invalid || loading"
+        >
+          <i *ngIf="loading" class="fas fa-spinner fa-spin"></i>
+          <i *ngIf="!loading" class="fas fa-sign-in-alt"></i>
+          {{ loading ? 'Connexion...' : 'Se connecter' }}
+        </button>
+
+        <!-- Lien vers l'inscription -->
+        <div class="auth-link">
+          <p>Pas encore de compte ?</p>
+          <a routerLink="/auth/register" class="link-btn">
+            <i class="fas fa-user-plus"></i>
+            Créer un compte
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Retour à l'accueil -->
+    <div class="back-home">
+      <a routerLink="/" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Retour à l'accueil
+      </a>
+    </div>
+  </div>
+</div>
