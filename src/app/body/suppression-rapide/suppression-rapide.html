@@ -1,1 +1,64 @@
-<p>suppression-rapide works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suppression rapide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="container animate__animated animate__fadeIn">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="text-center mb-4">
+                    <span class="logo">Recette de cuisine </span>
+                    <p class="tagline">Organisez, planifiez, savourez</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-trash-alt me-2 header-icon"></i>Suppression rapide</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="deleteForm">
+                            <div class="form-group">
+                                <label for="recette" class="form-label fw-medium">Recette planifiée</label>
+                                <input type="text" class="form-control" id="recette" placeholder="Rechercher une recette...">
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <button type="submit" class="btn btn-delete mt-3">
+                                <i class="fas fa-trash me-2"></i>Supprimer la recette
+                            </button>
+                        </form>
+                        
+                        <div class="recipe-list">
+                            <h5>Recettes planifiées récentes</h5>
+                            <div class="recipe-item animate__animated">
+                                <span>Pâtes carbonara</span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="recipe-item animate__animated">
+                                <span>Salade César</span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="recipe-item animate__animated">
+                                <span>Poulet rôti</span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="recipe-item animate__animated">
+                                <span>Ratatouille</span>
+                                <button class="delete-item"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

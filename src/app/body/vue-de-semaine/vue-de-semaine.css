@@ -1,0 +1,123 @@
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #48dbfb;
+    --accent-color: #feca57;
+    --light-color: #f7f1e3;
+    --dark-color: #2c3e50;
+}
+
+.semaine-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header-box {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.header-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.jours-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.jour-item {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.jour-item:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.jour-item.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.recettes-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.jour-titre {
+    color: var(--dark-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.categorie-section {
+    margin-bottom: 20px;
+}
+
+.categorie-section h5 {
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.recette-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.recette-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.recette-details {
+    flex: 1;
+}
+
+.recette-details h6 {
+    margin: 0;
+    color: var(--dark-color);
+}
+
+.badge {
+    background: var(--accent-color);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-right: 10px;
+}
+
+.temps {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .jours-container {
+    flex-direction: column;
+    }
+    
+    .recette-item {
+    flex-direction: column;
+    text-align: center;
+    }
+}

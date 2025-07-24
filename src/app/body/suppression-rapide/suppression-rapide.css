@@ -1,0 +1,210 @@
+    :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #48dbfb;
+        --accent-color: #feca57;
+        --light-color: #f7f1e3;
+        --dark-color: #2c3e50;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+    }
+
+    .logo {
+        font-family: 'Pacifico', cursive;
+        font-size: 2.5rem;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.5rem;
+        display: block;
+        text-align: center;
+    }
+
+    .tagline {
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-style: italic;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        margin-top: 40px;
+    }
+    
+    .card {
+        border: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #ff9a9e 100%);
+        color: white;
+        border-bottom: none;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') center/cover;
+        opacity: 0.1;
+        z-index: 0;
+    }
+    
+    .card-header h3 {
+        margin: 0;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card-body {
+        padding: 25px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        padding: 12px 15px;
+        transition: all 0.3s;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.25);
+    }
+    
+    .btn-delete {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #ff7676 100%);
+        border: none;
+        padding: 12px 20px;
+        font-weight: 600;
+        width: 100%;
+        transition: all 0.3s;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+    }
+    
+    .btn-delete:hover {
+        background: linear-gradient(135deg, #ff5252 0%, #ff7676 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+    }
+    
+    .search-icon {
+        position: absolute;
+        right: 15px;
+        top: 12px;
+        color: var(--primary-color);
+        z-index: 10;
+    }
+    
+    .recipe-list {
+        margin-top: 25px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding-top: 20px;
+    }
+    
+    .recipe-list h5 {
+        color: var(--dark-color);
+        font-weight: 600;
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .recipe-list h5::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--accent-color);
+        border-radius: 3px;
+    }
+    
+    .recipe-item {
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        background-color: rgba(247, 241, 227, 0.5);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s;
+        border-left: 4px solid var(--accent-color);
+    }
+    
+    .recipe-item:hover {
+        background-color: rgba(247, 241, 227, 0.8);
+        transform: translateX(5px);
+    }
+    
+    .delete-item {
+        color: var(--primary-color);
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .delete-item:hover {
+        background-color: rgba(255, 107, 107, 0.1);
+        transform: rotate(90deg) scale(1.1);
+    }
+
+    .header-icon {
+        transition: all 0.3s ease;
+    }
+
+    .card-header:hover .header-icon {
+        transform: scale(1.1) rotate(10deg);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            margin-top: 20px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+        }
+    }

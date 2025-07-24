@@ -1,67 +1,148 @@
-import { Injectable, signal } from '@angular/core';
-import { Recette } from './models/recette';
+  import { Injectable, signal } from '@angular/core';
+  import { Recette } from './models/recette';
 
+  type FiltreRecette = {
+    nom: string;
+    ingredient: string;
+    categorie: string;
+    difficulte: string;
+    maxTemps: number;
+  };
 
-type FiltreRecette = {
-  nom: string;
-  ingredient: string;
-  categorie: string;
-  difficulte: string;
-  maxTemps: number;
-};
-@Injectable({
-  providedIn: 'root'
-})
-export class RecetteService {
-  // 📦 Liste réactive des recettes
-  private recettes = signal<Recette[]>([
-    {
-      id: 1,
-      titre: 'Pizza Margherita',
-      image: 'assets/images/pizza.jpg',
-      duree: 20,
-      cuisson: 15,
-      difficulte: 'Facile',
-      categorie: 'Plat',
-      ingredients: ['Pâte à pizza', 'Tomate', 'Mozzarella', 'Basilic'],
-      preparation: [
-        'Préchauffer le four à 220°C',
-        'Étaler la pâte',
-        'Ajouter les ingrédients',
-        'Enfourner pendant 15 minutes'
-      ],
-      nutrition: '500 kcal / portion'
-    },
-    {
-      id: 2,
-      titre: 'Salade César',
-      image: 'assets/images/cesar.jpg',
-      duree: 15,
-      cuisson: 0,
-      difficulte: 'Facile',
-      categorie: 'Entrée',
-      ingredients: ['Laitue', 'Poulet grillé', 'Parmesan', 'Croûtons', 'Sauce César'],
-      preparation: [
-        'Laver la laitue',
-        'Griller le poulet',
-        'Assembler les ingrédients',
-        'Ajouter la sauce'
-      ]
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RecetteService {
+    // 📦 Liste réactive des recettes
+    private recettes = signal<Recette[]>([
+      {
+        id: 1,
+        titre: 'Pizza Margherita',
+        image: 'assets/images/pizza.jpg',
+        duree: 20,
+        cuisson: 15,
+        difficulte: 'Facile',
+        categorie: 'Plat',
+        ingredients: ['Pâte à pizza', 'Tomate', 'Mozzarella', 'Basilic'],
+        preparation: [
+          'Préchauffer le four à 220°C',
+          'Étaler la pâte',
+          'Ajouter les ingrédients',
+          'Enfourner pendant 15 minutes'
+        ],
+        nutrition: '500 kcal / portion'
+      },
+      {
+        id: 2,
+        titre: 'Salade César',
+        image: 'assets/images/cesar.jpg',
+        duree: 15,
+        cuisson: 0,
+        difficulte: 'Facile',
+        categorie: 'Entrée',
+        ingredients: ['Laitue', 'Poulet grillé', 'Parmesan', 'Croûtons', 'Sauce César'],
+        preparation: [
+          'Laver la laitue',
+          'Griller le poulet',
+          'Assembler les ingrédients',
+          'Ajouter la sauce'
+        ],
+        nutrition: '350 kcal / portion'
+      },
+      // Nouvelles recettes ajoutées
+      {
+        id: 3,
+        titre: 'Poulet rôti aux herbes',
+        image: 'assets/images/poulet-roti.jpg',
+        duree: 15,
+        cuisson: 60,
+        difficulte: 'Moyen',
+        categorie: 'Plat',
+        ingredients: ['Poulet entier', 'Herbes de Provence', 'Ail', 'Citron', 'Beurre'],
+        preparation: [
+          'Préchauffer le four à 180°C',
+          'Badigeonner le poulet de beurre et herbes',
+          'Mettre au four pendant 1 heure',
+          'Laisser reposer avant de servir'
+        ],
+        nutrition: '600 kcal / portion'
+      },
+      {
+        id: 4,
+        titre: 'Ratatouille',
+        image: 'assets/images/ratatouille.jpg',
+        duree: 30,
+        cuisson: 45,
+        difficulte: 'Moyen',
+        categorie: 'Plat',
+        ingredients: ['Aubergine', 'Courgette', 'Poivron', 'Tomate', 'Oignon', 'Ail'],
+        preparation: [
+          'Couper tous les légumes en dés',
+          'Faire revenir les oignons et l\'ail',
+          'Ajouter les légumes et laisser mijoter',
+          'Assaisonner à votre goût'
+        ],
+        nutrition: '250 kcal / portion'
+      },
+      {
+        id: 5,
+        titre: 'Tarte aux pommes',
+        image: 'assets/images/tarte-pommes.jpg',
+        duree: 25,
+        cuisson: 35,
+        difficulte: 'Facile',
+        categorie: 'Dessert',
+        ingredients: ['Pâte brisée', 'Pommes', 'Sucre', 'Beurre', 'Cannelle'],
+        preparation: [
+          'Étaler la pâte dans un moule',
+          'Éplucher et couper les pommes',
+          'Disposer les pommes sur la pâte',
+          'Saupoudrer de sucre et cannelle',
+          'Cuire 35 minutes à 180°C'
+        ],
+        nutrition: '400 kcal / portion'
+      },
+      {
+        id: 6,
+        titre: 'Omelette aux champignons',
+        image: 'assets/images/omelette.jpg',
+        duree: 10,
+        cuisson: 10,
+        difficulte: 'Facile',
+        categorie: 'Petit-déjeuner',
+        ingredients: ['Œufs', 'Champignons', 'Persil', 'Beurre', 'Sel', 'Poivre'],
+        preparation: [
+          'Battre les œufs en omelette',
+          'Faire revenir les champignons',
+          'Verser les œufs dans la poêle',
+          'Cuire à feu doux'
+        ],
+        nutrition: '300 kcal / portion'
+      }
+    ]);
+
+    // Jours de la semaine pour la planification
+    private joursSemaine = signal<string[]>([
+      'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'
+    ]);
+
+    // ✅ Obtenir toutes les recettes (non filtrées)
+    getRecettes(): Recette[] {
+      return this.recettes();
     }
-  ]);
 
-  // ✅ Obtenir toutes les recettes (non filtrées)
-  getRecettes(): Recette[] {
-    return this.recettes();
-  }
+    // ✅ Obtenir les jours de la semaine
+    getJoursSemaine(): string[] {
+      return this.joursSemaine();
+    }
 
-  // ✅ Par ID
-  getRecetteById(id: number): Recette | undefined {
-    return this.recettes().find(r => r.id === id);
-  }
+    // ✅ Par ID
+    getRecetteById(id: number): Recette | undefined {
+      return this.recettes().find(r => r.id === id);
+    }
 
-  // ✅ Ajouter une recette dynamiquement
-  ajouterRecette(recette: Recette): void {
-    this.recettes.update(r => [...r, recette]);
-  }
-}
+    // ✅ Ajouter une recette dynamiquement
+    ajouterRecette(recette: Recette): void {
+      this.recettes.update(r => [...r, recette]);
+    }
+  }     
