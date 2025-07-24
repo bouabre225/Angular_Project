@@ -1,0 +1,87 @@
+<div class="filter-bar">
+  <div class="filter-container">
+    <!-- Recherche par nom -->
+    <div class="filter-group">
+      <label for="search">Rechercher une recette</label>
+      <input
+        id="search"
+        type="text"
+        [(ngModel)]="chercheTerm"
+        (input)="FiltreChange()"
+        placeholder="Nom de la recette..."
+        class="filter-input"
+      />
+    </div>
+
+    <!-- Recherche par ingrédients -->
+    <div class="filter-group">
+      <label for="ingredient">Ingrédient</label>
+      <input
+        id="ingredient"
+        type="text"
+        [(ngModel)]="ingredient"
+        (input)="FiltreChange()"
+        placeholder="Ex: tomate, fromage..."
+        class="filter-input"
+      />
+    </div>
+
+    <!-- Filtre par catégories -->
+    <div class="filter-group">
+      <label for="categorie">Catégorie</label>
+      <select
+        id="categorie"
+        [(ngModel)]="categories"
+        (change)="FiltreChange()"
+        class="filter-select"
+      >
+        <option value="">Toutes les catégories</option>
+        <option *ngFor="let cat of categories.slice(1)" [value]="cat">
+          {{ cat }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Filtr durée -->
+    <div class="filter-group">
+      <label for="duree">Temps de préparation</label>
+      <select
+        id="duree"
+        [(ngModel)]="DureeMax"
+        (change)="FiltreChange()"
+        class="filter-select"
+      >
+        <option *ngFor="let duration of durees" [ngValue]="duration.value">
+          {{ duration.label }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Filtre pour la difficulté -->
+    <div class="filter-group">
+      <label for="difficulte">Difficulté</label>
+      <select
+        id="difficultees"
+        [(ngModel)]="difficultees"
+        (change)="FiltreChange()"
+        class="filter-select"
+      >
+        <option value="">Toutes les difficultés</option>
+        <option *ngFor="let diff of difficultees.slice(1)" [value]="diff">
+          {{ diff }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Bouton pour remettre à zéro -->
+    <div class="filter-group">
+      <button
+        type="button"
+        (click)="reinitialiserFiltres()"
+        class="clear-button"
+      >
+        Effacer les filtres
+      </button>
+    </div>
+  </div>
+</div>

@@ -22,7 +22,6 @@ import { FormsModule } from '@angular/forms';
 export class App {
   title = signal('Recette_Project');
 
-
   constructor(public recetteService: RecetteService) {}
 }
 
