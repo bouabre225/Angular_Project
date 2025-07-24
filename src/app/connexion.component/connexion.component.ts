@@ -33,7 +33,7 @@ export class ConnexionComponent {
       localStorage.setItem('utilisateurConnecte', JSON.stringify(user));
       this.erreur = null;
       alert('Connexion réussie !');
-       this.router.navigate(['/profil']);  // à la place de navigate(['/'])
+       this.router.navigate(['/recettes']);  // à la place de navigate(['/'])
       //this.router.navigate(['/']); // Redirection vers l'accueil ou dashboard
     } else {
       this.erreur = "Email ou mot de passe incorrect.";

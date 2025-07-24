@@ -32,7 +32,7 @@ export class InscriptionComponent {
     const utilisateurs = JSON.parse(localStorage.getItem('utilisateurs') || '[]');
     utilisateurs.push(this.utilisateur);
     localStorage.setItem('utilisateurs', JSON.stringify(utilisateurs));
-    alert('Inscription réussie !');
+    //alert('Inscription réussie !');
 
     // Optionnel : réinitialiser le formulaire
     this.utilisateur = {
