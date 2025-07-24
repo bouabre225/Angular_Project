@@ -53,7 +53,6 @@
         ],
         nutrition: '350 kcal / portion'
       },
-      // Nouvelles recettes ajoutées
       {
         id: 3,
         titre: 'Poulet rôti aux herbes',

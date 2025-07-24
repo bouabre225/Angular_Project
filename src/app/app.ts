@@ -4,7 +4,7 @@ import { Header } from './header/header';
 import { Footer } from './footer/footer';
 import { DeplacementDesRecettes } from './body/deplacement-des-recettes/deplacement-des-recettes';
 import { VueDeSemaine } from './body/vue-de-semaine/vue-de-semaine';
-//import { } from './body/suppression-rapide/suppression-rapide';
+//import { SuppressionRapide} from './body/suppression-rapide/suppression-rapide';
 import { RecetteService } from './recette';
 import { ListeRecette } from './liste-recette/liste-recette';
 import { CommonModule } from '@angular/common';
