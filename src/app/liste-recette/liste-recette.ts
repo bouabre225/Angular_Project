@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 export class ListeRecette implements OnInit {
   recettes: Recette[] = [];
   
-  recettesFiltrees = computed(() => this.recetteService.getRecettesFiltrees());
+  recettesFiltrees = computed(() => this.recetteService.getRecettes());
   constructor(private recetteService: RecetteService) {}
 
   ngOnInit(): void {
