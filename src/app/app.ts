@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ListeRecette, CommonModule, DetailRecette, RouterModule, FormsModule, Header, Footer, DeplacementDesRecettes, VueDeSemaine, SuppressionRapide, SuppressionRapide, RecetteService],
+  imports: [RouterOutlet, ListeRecette, CommonModule, DetailRecette, RouterModule, FormsModule, Header, Footer, DeplacementDesRecettes, VueDeSemaine, SuppressionRapide, SuppressionRapide],
   templateUrl: './app.html',
   styleUrl: './app.css',
   template: `<router-outlet></router-outlet>`
