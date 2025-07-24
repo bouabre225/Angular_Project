@@ -1,18 +1,37 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, type AfterViewInit } from "@angular/core"
+import { Router } from "@angular/router"
 
 @Component({
-  selector: 'app-header',
+  selector: "app-header",
   standalone: true,
   imports: [],
-  templateUrl: './header.html',
-  styleUrl: './header.css'
+  templateUrl: "./header.html",
+  styleUrls: ["./header.css"],
 })
 export class Header implements AfterViewInit {
-  
-  ngAfterViewInit() {
-    const boxes = document.querySelectorAll('.header-box');
-    boxes.forEach((box, index) => {
-      (box as HTMLElement).style.animationDelay = `${index * 0.2}s`;
-    });
+  constructor(private router: Router) {}
+
+  ngAfterViewInit(): void {
+    this.animateHeaderBoxes()
+  }
+
+  private animateHeaderBoxes(): void {
+    const headerBoxes = document.querySelectorAll(".header-box")
+
+    headerBoxes.forEach((box: Element, index: number) => {
+      ;(box as HTMLElement).style.animationDelay = `${index * 0.2}s`
+    })
+  }
+
+  navigateToRecettes(): void {
+    this.router.navigate(["/"])
+  }
+
+  navigateToApprentissage(): void {
+    this.router.navigate(["/apprentissage"])
+  }
+
+  navigateToCommunaute(): void {
+    this.router.navigate(["/communaute"])
   }
 }
