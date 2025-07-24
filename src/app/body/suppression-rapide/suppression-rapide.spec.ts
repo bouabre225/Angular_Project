@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuppressionRapide } from './suppression-rapide';
+import { SuppressionRapideComponent } from './suppression-rapide';
 
-describe('SuppressionRapide', () => {
-  let component: SuppressionRapide;
-  let fixture: ComponentFixture<SuppressionRapide>;
+describe('SuppressionRapideComponent', () => {
+  let component: SuppressionRapideComponent;
+  let fixture: ComponentFixture<SuppressionRapideComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SuppressionRapide]
+      declarations: [SuppressionRapideComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SuppressionRapide);
+    fixture = TestBed.createComponent(SuppressionRapideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

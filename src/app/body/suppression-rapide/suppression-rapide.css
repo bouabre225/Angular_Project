@@ -1,0 +1,248 @@
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #48dbfb;
+    --accent-color: #feca57;
+    --light-color: #f7f1e3;
+    --dark-color: #2c3e50;
+    --text-color: #333;
+    --text-light: #666;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* En-tête amélioré */
+.logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+    display: block;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.tagline {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
+}
+
+/* Carte principale */
+.card {
+    border: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #ff7676 100%);
+    color: white;
+    border-bottom: none;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.header-icon {
+    transition: all 0.3s ease;
+}
+
+.card-header:hover .header-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* Formulaire amélioré */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(255, 107, 107, 0.2);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    z-index: 10;
+    font-size: 1rem;
+}
+
+/* Boutons améliorés */
+.btn-delete {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #ff7676 100%);
+    border: none;
+    padding: 12px 25px;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    font-size: 0.95rem;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #ff7676 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Liste des recettes */
+.recipe-list {
+    margin-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 20px;
+}
+
+.recipe-list h5 {
+    color: var(--dark-color);
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.recipe-list h5::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 3px;
+}
+
+/* Items de recette */
+.recipe-item {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background-color: rgba(247, 241, 227, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.recipe-item:hover {
+    background-color: rgba(247, 241, 227, 0.9);
+    transform: translateX(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-item span {
+    font-weight: 500;
+    color: var(--text-color);
+    flex-grow: 1;
+}
+
+.delete-item {
+    color: var(--primary-color);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.delete-item:hover {
+    background-color: rgba(255, 107, 107, 0.15);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* Notifications */
+.alert {
+    font-size: 0.95rem;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 20px;
+        padding: 0 15px;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .card-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .recipe-item {
+        padding: 12px;
+    }
+    
+    .recipe-list h5 {
+        font-size: 1.1rem;
+    }
+}
